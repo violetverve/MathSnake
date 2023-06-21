@@ -75,7 +75,6 @@ public class UIManager : MonoBehaviour
     {
         foreach (var kvp in toggleKeyMap)
         {
-            Debug.Log($"Setting toggles for {kvp.Key} and {kvp.Value}");
             Toggle toggle = kvp.Key;
             string playerPrefsKey = kvp.Value;
             toggle.isOn = PlayerPrefs.GetInt(playerPrefsKey) == 1;

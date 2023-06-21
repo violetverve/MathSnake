@@ -10,12 +10,13 @@ public class Snake : MonoBehaviour
     private List<Transform> _segments = new List<Transform>();
     private MathUnit mathUnit;
     private bool _isAlive = true;
+    private int _score = 0;
     
     public Rigidbody2D rb;
     public Transform segmentPrefab;
     public int initialSize = 4;
     public static event Action OnPlayerDeath;
-    public int score = 0;
+    public TextMeshProUGUI scoreText;
 
     [SerializeField] GameObject mathObject;
 
@@ -83,7 +84,8 @@ public class Snake : MonoBehaviour
         segment.position = _segments[_segments.Count - 1].position;
 
         _segments.Add(segment);
-        score++;
+        _score++;
+        scoreText.text = $"Score: {(_score - 3).ToString()}";
     }
 
     private void ResetState()

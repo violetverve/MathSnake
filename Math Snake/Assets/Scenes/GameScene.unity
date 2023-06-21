@@ -1757,18 +1757,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1926823048}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: SetToggles
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1926823048}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: EnableSettingsPanel
         m_Mode: 1
         m_Arguments:
@@ -2933,7 +2921,7 @@ MonoBehaviour:
   rb: {fileID: 1421372800}
   segmentPrefab: {fileID: 905083904748196985, guid: 7a6d91d33579a574db1f6cae9fb901a0, type: 3}
   initialSize: 4
-  score: 0
+  scoreText: {fileID: 122367695}
   mathObject: {fileID: 1113228814}
 --- !u!61 &1421372799
 BoxCollider2D:

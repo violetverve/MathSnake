@@ -55,22 +55,6 @@ public class MathUnit: MonoBehaviour
     }
 
     private static void Initialize()
-    // {
-    //     // Clear the dictionary
-    //     _operations.Clear();
-
-    //     var assembly = Assembly.GetAssembly(typeof(Operation));
-    //     var allOperationTypes = assembly.GetTypes()
-    //         .Where(t => t.IsSubclassOf(typeof(Operation)) && !t.IsAbstract);
-
-    //     foreach (var operationType in allOperationTypes)
-    //     {
-    //         _operations.Add((OperationType)Enum.Parse(typeof(OperationType), operationType.Name), (Operation)Activator.CreateInstance(operationType));
-    //     }
-
-
-    //     _isInitialized = true;
-    // }
     {
         List<OperationType> selectedOperations = new List<OperationType>();
 
@@ -129,8 +113,7 @@ public class MathUnit: MonoBehaviour
     {
         if (_operations.ContainsKey(operationType))
         {
-            Operation operation = _operations[operationType];
-            exampleText.text = $"{_x} {operation.GetOperatorSymbol()} {_y} = ?";
+            exampleText.text =  _operations[operationType].GetExampleText(_x, _y);
         }
     }
 

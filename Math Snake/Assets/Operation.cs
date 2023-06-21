@@ -5,6 +5,11 @@ public abstract class Operation
     public abstract OperationType OperationType { get; }
     public abstract int PerformOperation(int a, int b);
     public abstract char GetOperatorSymbol();
+    
+    public virtual string GetExampleText(int a, int b)
+    {
+        return $"{a} {GetOperatorSymbol()} {b} = ?";
+    }
 }
 
 public class AdditionOperation : Operation
@@ -59,11 +64,16 @@ public class DivisionOperation : Operation
 
     public override int PerformOperation(int a, int b)
     {
-        return a / b;
+        return a;
     }
 
     public override char GetOperatorSymbol()
     {
         return '/';
+    }
+
+    public override string GetExampleText(int a, int b)
+    {
+        return $"{a * b} {GetOperatorSymbol()} {b} = ?";
     }
 }
