@@ -18,20 +18,11 @@ public class MathUnit: MonoBehaviour
     private int _answer;
     
     private static Dictionary<OperationType, Operation> _operations = new Dictionary<OperationType, Operation>();
-
-    private static bool _isInitialized = false;
-
-
-    public void GenerateValues()
-    {
-        _x = UnityEngine.Random.Range(0, 10);
-        _y = UnityEngine.Random.Range(1, 10);
-    }
-
+    
     private void Start()
     {
         Initialize();
-        SetProblem();
+        ExecuteRandomOperation();
     }
 
     public bool CheckAnswer(int answer)
@@ -39,19 +30,20 @@ public class MathUnit: MonoBehaviour
         return answer == _answer;
     }
 
-    public void SetProblem()
-    {
-        GenerateValues();
-        ExecuteRandomOperation();
-        foodSpawn.SetFoodValues(_answer);
-    }
 
-    private void ExecuteRandomOperation()
+    public void ExecuteRandomOperation()
     {
         int randomOperation = UnityEngine.Random.Range(0, _operations.Count);
         OperationType operationType = _operations.Keys.ElementAt(randomOperation);
+
+        Operation operation = _operations[operationType];
+
+        (_x, _y) = operation.GenerateValues(1, 10);
+
         _answer = ApplyOperation(operationType, _x, _y);
+        
         SetExampleText(operationType);
+        foodSpawn.SetFoodValues(operation.GetPossibleAnswers(_answer, foodSpawn.numberOfFood, 5, _x));
     }
 
     private static void Initialize()
@@ -90,16 +82,10 @@ public class MathUnit: MonoBehaviour
                 _operations.Add(operation.OperationType, operation);
             }
         }
-
-        _isInitialized = true;
     }
 
-    public static int ApplyOperation(OperationType operationType, int a, int b)
+    private static int ApplyOperation(OperationType operationType, int a, int b)
     {
-        if (!_isInitialized)
-        {
-            Initialize();
-        }
 
         if (_operations.ContainsKey(operationType))
         {

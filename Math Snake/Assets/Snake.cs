@@ -109,7 +109,7 @@ public class Snake : MonoBehaviour
     private void ResetFood()
     {
         GameObject.Find("FoodSpawn").GetComponent<FoodSpawn>().ChangeFoodPosition();
-        mathUnit.SetProblem();
+        mathUnit.ExecuteRandomOperation();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

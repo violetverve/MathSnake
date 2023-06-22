@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+
 public abstract class Operation
 {
     public Operation() {}
@@ -9,6 +12,31 @@ public abstract class Operation
     public virtual string GetExampleText(int a, int b)
     {
         return $"{a} {GetOperatorSymbol()} {b} = ?";
+    }
+
+    public virtual (int, int) GenerateValues(int min, int max)
+    {
+        return (UnityEngine.Random.Range(min, max), UnityEngine.Random.Range(min, max));
+    }
+
+    public virtual List<int> GetPossibleAnswers(int answer, int numberOfFood, int barrier, int x = 0)
+    {
+        int min = answer - barrier;
+        int max = answer + barrier;
+        List<int> possibleAnswers = new List<int>();
+        possibleAnswers.Add(answer);
+        
+        for (int i = 0; i < numberOfFood; i++)
+        {
+            int possibleAnswer = UnityEngine.Random.Range(min, max);
+            while (possibleAnswers.Contains(possibleAnswer))
+            {
+                possibleAnswer = UnityEngine.Random.Range(min, max);
+            }
+            possibleAnswers.Add(possibleAnswer);
+        }
+
+        return possibleAnswers;
     }
 }
 
@@ -55,6 +83,25 @@ public class MultiplicationOperation : Operation
     public override char GetOperatorSymbol()
     {
         return '*';
+    }
+
+    public override List<int> GetPossibleAnswers(int answer, int numberOfFood, int barrier, int x)
+    {
+        int y = answer / x;
+
+        List<int> possibleAnswers = new List<int>();
+        possibleAnswers.Add(answer);
+        
+        int sign = 1;
+
+        for (int i = 1; i < numberOfFood; i++)
+        {
+            int possibleAnswer = x * (y + sign * i);
+            possibleAnswers.Add(possibleAnswer);
+            sign *= -1;
+        }
+
+        return possibleAnswers;
     }
 }
 

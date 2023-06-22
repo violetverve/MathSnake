@@ -25,20 +25,12 @@ public class FoodSpawn : MonoBehaviour
     }
 
 
-    public void SetFoodValues(int answer)
+    public void SetFoodValues(List<int> values)
     {
         for (int i = 0; i < _foods.Count; i++)
         {
             TextMeshPro textComponent = _foods[i].Find("Number").GetComponent<TextMeshPro>();
-            if (i == 0)
-            {
-                textComponent.text = answer.ToString();
-            }
-            else
-            {
-                int value = Random.Range(answer - 5, answer + 5);
-                textComponent.text = value.ToString();
-            } 
+            textComponent.text = values[i].ToString();
         }
     }
 
