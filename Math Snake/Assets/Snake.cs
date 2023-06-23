@@ -11,6 +11,7 @@ public class Snake : MonoBehaviour
     private MathUnit mathUnit;
     private bool _isAlive = true;
     private int _score = -initialSize + 1;
+    private bool _startedMoving = false;
     
     public Rigidbody2D rb;
     public Transform segmentPrefab;
@@ -38,12 +39,15 @@ public class Snake : MonoBehaviour
         mathUnit = mathObject.GetComponent<MathUnit>();
         complexityDropdown.SetSpeed();
         snakeColorDropdown.SetSnakeColor();
-        ResetState();
-        EnableMovement();
     }
 
     private void Update()
     {
+        if (!_startedMoving && Input.anyKeyDown)
+        {
+            _startedMoving = true;
+            ResetState();
+        }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             if (_direction != Vector2.left)
@@ -68,6 +72,7 @@ public class Snake : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!_startedMoving) return;
         if (!_isAlive) return;
         
         for (int i = _segments.Count - 1; i > 0; i--)

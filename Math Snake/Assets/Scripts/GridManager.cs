@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GridManager : MonoBehaviour
 {
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePrefab;
 
-    [SerializeField] private Transform _cam;
     private Dictionary<Vector2Int, Tile> _tiles = new Dictionary<Vector2Int, Tile>();
 
     private void Start() {
@@ -15,19 +15,17 @@ public class GridManager : MonoBehaviour
     }
 
     public void GenerateGrid() {
-        for (int x = 0; x < _width; x++) {
-            for (int y = 0; y < _height; y++) {
+        for (int x = -_width/2; x < _width/2 + 1; x++) {
+            for (int y = -_height/2 - 1; y < _height/2; y++) {
                 var spawnedTile = Instantiate(_tilePrefab, new Vector3(x, y), Quaternion.identity);
                 spawnedTile.name = $"Tile {x}, {y}";
 
-                var isOffset = (x + y) % 2 == 1;
+                var isOffset = Math.Abs(x + y) % 2 == 1;
                 spawnedTile.Init(isOffset);
 
                 _tiles[new Vector2Int(x, y)] = spawnedTile;
             }
         }
-
-        _cam.position = new Vector3((_width - 1) / 2f, (_height - 1) / 2f, -10f);
     }
 
     public Tile GetTile(Vector2Int coordinates) {

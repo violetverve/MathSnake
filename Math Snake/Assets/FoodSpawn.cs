@@ -7,6 +7,7 @@ public class FoodSpawn : MonoBehaviour
 {
     public GameObject foodPrefab;
     public BoxCollider2D gridArea;
+    public FruitDropdown fruitDropdown;
 
     private List<Transform> _foods = new List<Transform>();
 
@@ -14,6 +15,7 @@ public class FoodSpawn : MonoBehaviour
 
     void Start()
     {
+        fruitDropdown.SetFoodNumber();
         SpawnFoods();
     }
 
