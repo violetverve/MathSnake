@@ -3,11 +3,14 @@ using System.Collections.Generic;
 
 public abstract class Operation
 {
+    public int _maxValue = 0;
     public Operation() {}
 
+    public int MaxValue => _maxValue;
     public abstract OperationType OperationType { get; }
     public abstract int PerformOperation(int a, int b);
     public abstract char GetOperatorSymbol();
+    public abstract void SetMaxValue(int maxValueAddSub, int maxValueMultDiv);
     
     public virtual string GetExampleText(int a, int b)
     {
@@ -16,13 +19,15 @@ public abstract class Operation
 
     public virtual (int, int) GenerateValues(int min, int max)
     {
-        return (UnityEngine.Random.Range(min, max), UnityEngine.Random.Range(min, max));
+        int maxV = (_maxValue != 0) ? _maxValue : max;
+        return (UnityEngine.Random.Range(min, maxV), UnityEngine.Random.Range(min, maxV));
     }
 
     public virtual List<int> GetPossibleAnswers(int answer, int numberOfFood, int barrier, int x = 0)
     {
         int min = answer - barrier;
         int max = answer + barrier;
+
         List<int> possibleAnswers = new List<int>();
         possibleAnswers.Add(answer);
         
@@ -53,6 +58,11 @@ public class AdditionOperation : Operation
     {
         return '+';
     }
+
+    public override void SetMaxValue(int maxValueAddSub, int maxValueMultDiv)
+    {
+        _maxValue = maxValueAddSub;
+    }
 }
 
 public class SubtractionOperation : Operation
@@ -67,6 +77,11 @@ public class SubtractionOperation : Operation
     public override char GetOperatorSymbol()
     {
         return '-';
+    }
+
+    public override void SetMaxValue(int maxValueAddSub, int maxValueMultDiv)
+    {
+        _maxValue = maxValueAddSub;
     }
 }
 
@@ -83,6 +98,11 @@ public class MultiplicationOperation : Operation
     public override char GetOperatorSymbol()
     {
         return '*';
+    }
+
+    public override void SetMaxValue(int maxValueAddSub, int maxValueMultDiv)
+    {
+        _maxValue = maxValueMultDiv;
     }
 
     public override List<int> GetPossibleAnswers(int answer, int numberOfFood, int barrier, int x)
@@ -122,5 +142,10 @@ public class DivisionOperation : Operation
     public override string GetExampleText(int a, int b)
     {
         return $"{a * b} {GetOperatorSymbol()} {b} = ?";
+    }
+
+    public override void SetMaxValue(int maxValueAddSub, int maxValueMultDiv)
+    {
+        _maxValue = maxValueMultDiv;
     }
 }

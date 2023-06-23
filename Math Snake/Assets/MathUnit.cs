@@ -77,6 +77,9 @@ public class MathUnit: MonoBehaviour
         foreach (var operationType in allOperationTypes)
         {
             Operation operation = (Operation)Activator.CreateInstance(operationType);
+        
+            operation.SetMaxValue(PlayerPrefs.GetInt("SliderAddSub", 10), PlayerPrefs.GetInt("SliderMulDiv", 10));
+
             if (selectedOperations.Contains(operation.OperationType))
             {
                 _operations.Add(operation.OperationType, operation);
