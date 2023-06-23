@@ -123,6 +123,12 @@ public class MultiplicationOperation : Operation
 
         return possibleAnswers;
     }
+
+    public override (int, int) GenerateValues(int min, int max)
+    {
+        int maxV = (_maxValue != 0) ? _maxValue : max;
+        return (UnityEngine.Random.Range(min, maxV), UnityEngine.Random.Range(1, 10));
+    }
 }
 
 public class DivisionOperation : Operation
@@ -131,7 +137,7 @@ public class DivisionOperation : Operation
 
     public override int PerformOperation(int a, int b)
     {
-        return a;
+        return b;
     }
 
     public override char GetOperatorSymbol()
@@ -141,11 +147,17 @@ public class DivisionOperation : Operation
 
     public override string GetExampleText(int a, int b)
     {
-        return $"{a * b} {GetOperatorSymbol()} {b} = ?";
+        return $"{a * b} {GetOperatorSymbol()} {a} = ?";
     }
 
     public override void SetMaxValue(int maxValueAddSub, int maxValueMultDiv)
     {
         _maxValue = maxValueMultDiv;
+    }
+
+        public override (int, int) GenerateValues(int min, int max)
+    {
+        int maxV = (_maxValue != 0) ? _maxValue : max;
+        return (UnityEngine.Random.Range(min, maxV), UnityEngine.Random.Range(1, 10));
     }
 }

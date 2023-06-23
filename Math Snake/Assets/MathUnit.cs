@@ -66,6 +66,7 @@ public class MathUnit: MonoBehaviour
         // If no operation is selected, default to Addition
         if (selectedOperations.Count == 0)
             selectedOperations.Add(OperationType.Addition);
+            PlayerPrefs.SetInt("Addition", 1);
 
         // Clear the dictionary and initialize the selected operations
         _operations.Clear();
