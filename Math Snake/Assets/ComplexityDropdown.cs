@@ -2,28 +2,30 @@ using UnityEngine;
 
 public class ComplexityDropdown : MonoBehaviour
 {
-
     public TMPro.TMP_Dropdown dropdown;
+
+    private const string DropdownPrefsKey = "Speed";
 
     private void Start()
     {
-        LoadDropdownValue(dropdown.name);
-        SetSpeed();
-        dropdown.onValueChanged.AddListener(delegate {SaveDropdownValue(dropdown.name); });
+        LoadDropdownValue();
+        dropdown.onValueChanged.AddListener(delegate { SaveDropdownValue();});
     }
 
-    public void SaveDropdownValue(string key)
+    private void SaveDropdownValue()
     {
-        PlayerPrefs.SetInt(key, dropdown.value);
+        PlayerPrefs.SetInt(DropdownPrefsKey, dropdown.value);
     }
 
-    public void LoadDropdownValue(string key)
+    private void LoadDropdownValue()
     {
-        dropdown.value = PlayerPrefs.GetInt(key, 1);
+        dropdown.value = PlayerPrefs.GetInt(DropdownPrefsKey, 0);
     }
- 
+
     public void SetSpeed()
     {
+        LoadDropdownValue();
+
         switch (dropdown.value)
         {
             case 0:
