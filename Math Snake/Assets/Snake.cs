@@ -18,6 +18,7 @@ public class Snake : MonoBehaviour
     public static event Action OnPlayerDeath;
     public TextMeshProUGUI scoreText;
     public ComplexityDropdown complexityDropdown;
+    public SnakeColorDropdown snakeColorDropdown;
 
     [SerializeField] GameObject mathObject;
 
@@ -36,6 +37,7 @@ public class Snake : MonoBehaviour
     {   
         mathUnit = mathObject.GetComponent<MathUnit>();
         complexityDropdown.SetSpeed();
+        snakeColorDropdown.SetSnakeColor();
         ResetState();
         EnableMovement();
     }
@@ -83,6 +85,7 @@ public class Snake : MonoBehaviour
     private void Grow()
     {
         Transform segment = Instantiate(segmentPrefab);
+        
         segment.position = _segments[_segments.Count - 1].position;
 
         _segments.Add(segment);

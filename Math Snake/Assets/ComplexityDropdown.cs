@@ -9,6 +9,7 @@ public class ComplexityDropdown : MonoBehaviour
     private void Start()
     {
         LoadDropdownValue();
+        
         dropdown.onValueChanged.AddListener(delegate { SaveDropdownValue();});
     }
 
