@@ -19,9 +19,9 @@ public class FoodSpawn : MonoBehaviour
         SpawnFoods();
     }
 
-    public void SpawnFood()
+    public void SpawnFood(Vector3 position)
     {       
-        GameObject newFood = Instantiate(foodPrefab, RandomizePosition(), Quaternion.identity);
+        GameObject newFood = Instantiate(foodPrefab, position, Quaternion.identity);
 
         _foods.Add(newFood.transform);
     }
@@ -38,10 +38,29 @@ public class FoodSpawn : MonoBehaviour
 
     public void SpawnFoods()
     {
+        List<Vector3> positions = RandomizePositions();
         for (int i = 0; i < numberOfFood; i++)
         {
-            SpawnFood();
+            SpawnFood(positions[i]);
         }
+    }
+
+    private List<Vector3> RandomizePositions()
+    {
+        List<Vector3> positions = new List<Vector3>();
+
+        for (int i = 0; i < numberOfFood; i++)
+        {
+            Vector3 position = RandomizePosition();
+            while (positions.Contains(position))
+            {
+                position = RandomizePosition();
+            }
+            positions.Add(position);
+        }
+
+        return positions;
+
     }
 
     private Vector3 RandomizePosition()

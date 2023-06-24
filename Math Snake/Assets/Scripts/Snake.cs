@@ -132,12 +132,14 @@ public class Snake : MonoBehaviour
             }
             else
             {
+                SaveScore();
                 OnPlayerDeath?.Invoke();
             }
-               ResetFood();
+            ResetFood();
         } 
         else if (other.CompareTag("Obstacle"))
         {
+            SaveScore();
             OnPlayerDeath?.Invoke();
         }
     }
@@ -148,5 +150,15 @@ public class Snake : MonoBehaviour
 
     private void EnableMovement() {
         _isAlive = true;
+    }
+
+    private void SaveScore()
+    {
+        PlayerPrefs.SetInt("Score", _score);
+        string best = $"BestScore-{PlayerPrefs.GetInt("Speed")}-{PlayerPrefs.GetInt("Fruit")}";
+        if (_score > PlayerPrefs.GetInt(best, 0))
+        {
+            PlayerPrefs.SetInt(best, _score);
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class UIManager : MonoBehaviour
     public Toggle _multiplicationToggle;
     public Toggle _divisionToggle;
     private static Dictionary<Toggle, string> toggleKeyMap;
+
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI bestScoreText;
 
     public void Start()
     {
@@ -47,6 +51,7 @@ public class UIManager : MonoBehaviour
     {
         settingsPanel.SetActive(false);
         statisticsPanel.SetActive(false);
+        SetScoreText();
         gameOverMenu.SetActive(true);
     }
 
@@ -80,4 +85,19 @@ public class UIManager : MonoBehaviour
             toggle.isOn = PlayerPrefs.GetInt(playerPrefsKey) == 1;
         }
     }
+
+    public void SetScoreText()
+    {
+        string best = $"BestScore-{PlayerPrefs.GetInt("Speed")}-{PlayerPrefs.GetInt("Fruit")}";
+        if (PlayerPrefs.HasKey(best))
+        {
+            bestScoreText.text = $"Best Score: {PlayerPrefs.GetInt(best)}";
+        }
+        else
+        {
+            bestScoreText.text = "";
+        }
+        scoreText.text = $"Score: {PlayerPrefs.GetInt("Score", 0)}";
+    }
+
 }
