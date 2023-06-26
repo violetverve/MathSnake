@@ -15,6 +15,7 @@ public class Snake : MonoBehaviour
     
     public Rigidbody2D rb;
     public Transform segmentPrefab;
+    public Transform snakeTailPrefab;
     public static int initialSize = 4;
     public static event Action OnPlayerDeath;
     public TextMeshProUGUI scoreText;

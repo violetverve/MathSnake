@@ -1205,7 +1205,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &243239238
 GameObject:
@@ -1673,7 +1673,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &381680113
 GameObject:
@@ -3646,7 +3646,7 @@ Transform:
   - {fileID: 2078543181}
   - {fileID: 1902495181}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &865681266
 GameObject:
@@ -5342,7 +5342,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1135843500
 GameObject:
@@ -6328,7 +6328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1421372800}
-  segmentPrefab: {fileID: 905083904748196985, guid: 7a6d91d33579a574db1f6cae9fb901a0, type: 3}
+  segmentPrefab: {fileID: 905083904748196985, guid: 8e0ede465bd461140a02c0d26e49372d, type: 3}
+  snakeTailPrefab: {fileID: 905083904748196985, guid: a7402d522e7d9934aa55bd589be30665, type: 3}
   scoreText: {fileID: 122367695}
   complexityDropdown: {fileID: 243239240}
   snakeColorDropdown: {fileID: 1083813128}
@@ -6369,14 +6370,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.16, y: 0.16}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75, y: 0.75}
+  m_Size: {x: 0.075, y: 0.075}
   m_EdgeRadius: 0
 --- !u!50 &1421372800
 Rigidbody2D:
@@ -6446,8 +6447,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.24313726, g: 0.80784315, b: 0.39215687, a: 1}
+  m_Sprite: {fileID: 21300000, guid: e61c1edb94c5ea14790b3481ed835312, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6466,7 +6467,7 @@ Transform:
   m_GameObject: {fileID: 1421372797}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -8802,7 +8803,7 @@ RectTransform:
   - {fileID: 381680114}
   - {fileID: 491947682}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9668,76 +9669,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124392356}
   m_CullTransparentMesh: 1
---- !u!1001 &5972879272744911561
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4085252437732097598, guid: 9932cdfccbd195c48b8003e4ab4a60a2, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4982520193384854598, guid: 9932cdfccbd195c48b8003e4ab4a60a2, type: 3}
-      propertyPath: m_Name
-      value: Food
-      objectReference: {fileID: 0}
-    - target: {fileID: 4982520193384854598, guid: 9932cdfccbd195c48b8003e4ab4a60a2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5080231136704557615, guid: 9932cdfccbd195c48b8003e4ab4a60a2, type: 3}
-      propertyPath: gridArea
-      value: 
-      objectReference: {fileID: 809120513}
-    - target: {fileID: 7923825939184167538, guid: 9932cdfccbd195c48b8003e4ab4a60a2, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923825939184167538, guid: 9932cdfccbd195c48b8003e4ab4a60a2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923825939184167538, guid: 9932cdfccbd195c48b8003e4ab4a60a2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923825939184167538, guid: 9932cdfccbd195c48b8003e4ab4a60a2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923825939184167538, guid: 9932cdfccbd195c48b8003e4ab4a60a2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923825939184167538, guid: 9932cdfccbd195c48b8003e4ab4a60a2, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923825939184167538, guid: 9932cdfccbd195c48b8003e4ab4a60a2, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923825939184167538, guid: 9932cdfccbd195c48b8003e4ab4a60a2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923825939184167538, guid: 9932cdfccbd195c48b8003e4ab4a60a2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923825939184167538, guid: 9932cdfccbd195c48b8003e4ab4a60a2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923825939184167538, guid: 9932cdfccbd195c48b8003e4ab4a60a2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9932cdfccbd195c48b8003e4ab4a60a2, type: 3}
