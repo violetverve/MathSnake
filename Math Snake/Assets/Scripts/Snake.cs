@@ -12,7 +12,7 @@ public class Snake : MonoBehaviour
     private bool _isAlive = true;
     private int _score = -initialSize + 1;
     private bool _startedMoving = false;
-    
+
     public Rigidbody2D rb;
     public Transform segmentPrefab;
     public Transform snakeTailPrefab;
@@ -36,7 +36,7 @@ public class Snake : MonoBehaviour
     }
 
     private void Start()
-    {   
+    {
         mathUnit = mathObject.GetComponent<MathUnit>();
         complexityDropdown.SetSpeed();
         snakeColorDropdown.SetSnakeColor();
@@ -75,10 +75,16 @@ public class Snake : MonoBehaviour
     {
         if (!_startedMoving) return;
         if (!_isAlive) return;
-        
+
         for (int i = _segments.Count - 1; i > 0; i--)
         {
+            // Quaternion prevRotation = _segments[i].rotation;
+            // Quaternion nextRotation = _segments[i - 1].rotation;
+
+
             _segments[i].position = _segments[i - 1].position;
+
+            -_segments[i].rotation = _segments[i - 1].rotation;
         }
 
         transform.position = new Vector3(
@@ -86,12 +92,16 @@ public class Snake : MonoBehaviour
             Mathf.Round(transform.position.y) + _direction.y,
             0.0f
         );
+
+
+        Quaternion playerRotation = Quaternion.LookRotation(Vector3.forward, _direction);
+        transform.rotation = playerRotation;
     }
 
     private void Grow()
     {
         Transform segment = Instantiate(segmentPrefab);
-        
+
         segment.position = _segments[_segments.Count - 1].position;
 
         _segments.Add(segment);
@@ -115,7 +125,7 @@ public class Snake : MonoBehaviour
         }
 
         transform.position = Vector3.zero;
-    } 
+    }
 
     private void ResetFood()
     {
@@ -137,7 +147,7 @@ public class Snake : MonoBehaviour
                 OnPlayerDeath?.Invoke();
             }
             ResetFood();
-        } 
+        }
         else if (other.CompareTag("Obstacle"))
         {
             SaveScore();
@@ -145,11 +155,13 @@ public class Snake : MonoBehaviour
         }
     }
 
-    private void DisableMovement() {
+    private void DisableMovement()
+    {
         _isAlive = false;
     }
 
-    private void EnableMovement() {
+    private void EnableMovement()
+    {
         _isAlive = true;
     }
 
