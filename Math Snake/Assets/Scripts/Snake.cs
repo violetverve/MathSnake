@@ -78,13 +78,9 @@ public class Snake : MonoBehaviour
 
         for (int i = _segments.Count - 1; i > 0; i--)
         {
-            // Quaternion prevRotation = _segments[i].rotation;
-            // Quaternion nextRotation = _segments[i - 1].rotation;
-
-
             _segments[i].position = _segments[i - 1].position;
 
-            -_segments[i].rotation = _segments[i - 1].rotation;
+            _segments[i].rotation = _segments[i - 1].rotation;
         }
 
         transform.position = new Vector3(
