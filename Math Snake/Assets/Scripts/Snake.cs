@@ -78,9 +78,17 @@ public class Snake : MonoBehaviour
 
         for (int i = _segments.Count - 1; i > 0; i--)
         {
-            _segments[i].position = _segments[i - 1].position;
 
-            _segments[i].rotation = _segments[i - 1].rotation;
+            Quaternion prevRotation = _segments[i].rotation;
+            Quaternion nextRotation = _segments[i - 1].rotation;
+
+
+
+            Vector2 prevDirection = (prevRotation * Vector2.up).normalized;
+            Vector2 nextDirection = (nextRotation * Vector2.up).normalized;
+
+            _segments[i].position = _segments[i - 1].position;
+            _segments[i].eulerAngles = new Vector3(0, 0, GetAngle(prevDirection, nextDirection)); ;
         }
 
         transform.position = new Vector3(
@@ -89,10 +97,70 @@ public class Snake : MonoBehaviour
             0.0f
         );
 
-
         Quaternion playerRotation = Quaternion.LookRotation(Vector3.forward, _direction);
         transform.rotation = playerRotation;
     }
+
+    private float GetAngle(Vector2 prevDirection, Vector2 nextDirection)
+    {
+        float angle = 0f;
+
+        if (nextDirection == Vector2.up)
+        {
+            angle = 0f;
+            if (prevDirection == Vector2.left)
+            {
+                angle = 180 - 45f;
+            }
+            else if (prevDirection == Vector2.right)
+            {
+                angle = 180 + 45f;
+            }
+            else
+            {
+                angle = 0f;
+            }
+        }
+        else if (nextDirection == Vector2.down)
+        {
+            angle = 180f;
+            if (prevDirection == Vector2.left)
+            {
+                angle = 180 + 45f;
+            }
+            else if (prevDirection == Vector2.right)
+            {
+                angle = 180 - 45f;
+            }
+        }
+        else if (nextDirection == Vector2.left)
+        {
+            angle = -90f;
+            if (prevDirection == Vector2.up)
+            {
+                angle = 45f;
+            }
+            else if (prevDirection == Vector2.down)
+            {
+                angle = -45f;
+            }
+        }
+        else if (nextDirection == Vector2.right)
+        {
+            angle = 90f;
+            if (prevDirection == Vector2.up)
+            {
+                angle = -45f;
+            }
+            else if (prevDirection == Vector2.down)
+            {
+                angle = 45f;
+            }
+        }
+
+        return angle;
+    }
+
 
     private void Grow()
     {
