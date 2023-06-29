@@ -14,28 +14,39 @@ public class Snake : MonoBehaviour
         Up,
         Down
     }
-
-    private Direction gridMoveDirection = Direction.Right;
+    private Direction gridMoveDirection;
     private Vector2Int gridPosition;
-    private List<Transform> _segments = new List<Transform>();
-    private List<SnakeMovePosition> snakeMovePositionList = new List<SnakeMovePosition>();
-    private List<SnakeBodyPart> snakeBodyPartList = new List<SnakeBodyPart>();
-
-
+    private List<Transform> _segments;
+    private List<SnakeMovePosition> snakeMovePositionList;
+    private List<SnakeBodyPart> snakeBodyPartList;
     private MathUnit mathUnit;
-    private bool _isAlive = true;
-    private int _score = -initialSize + 1;
-    private bool _startedMoving = false;
+    private bool _isAlive;
+    private int _score;
+    private bool _startedMoving;
 
     public Rigidbody2D rb;
     public Transform segmentPrefab;
-    public static int initialSize = 4;
+    public static int initialSize;
     public static event Action OnPlayerDeath;
     public TextMeshProUGUI scoreText;
     public ComplexityDropdown complexityDropdown;
     public SnakeColorDropdown snakeColorDropdown;
 
     [SerializeField] GameObject mathObject;
+
+    private void Awake()
+    {
+        initialSize = 4;
+        gridMoveDirection = Direction.Right;
+        gridPosition = Vector2Int.zero;
+        _segments = new List<Transform>();
+        snakeMovePositionList = new List<SnakeMovePosition>();
+        snakeBodyPartList = new List<SnakeBodyPart>();
+        mathUnit = GetComponent<MathUnit>();
+        _isAlive = true;
+        _score = -initialSize + 1;
+        _startedMoving = false;
+    }
 
 
     private void OnEnable()
@@ -46,11 +57,6 @@ public class Snake : MonoBehaviour
     private void OnDisable()
     {
         OnPlayerDeath -= EnableMovement;
-    }
-
-    private void Awake()
-    {
-        gridPosition = new Vector2Int(0, 0);
     }
 
     private void Start()
@@ -151,6 +157,8 @@ public class Snake : MonoBehaviour
         }
     }
 
+
+    // should be refactored
     private void Grow()
     {
         Transform segment = Instantiate(segmentPrefab);
