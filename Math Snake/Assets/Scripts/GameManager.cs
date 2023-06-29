@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
         _snakeScript = snakeObject.GetComponent<Snake>();
         complexityDropdown.SetSpeed();
         snakeColorDropdown.SetSnakeColor();
+        _score = -_snakeScript.GetInitialSize() + 1;
     }
 
     private void SaveScore()

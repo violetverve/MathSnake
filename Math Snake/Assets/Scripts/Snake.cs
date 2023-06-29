@@ -16,7 +16,6 @@ public class Snake : MonoBehaviour
     }
     private Direction gridMoveDirection;
     private Vector2Int gridPosition;
-    private List<Transform> _segments; // to be deleted
     private List<SnakeMovePosition> snakeMovePositionList;
     private List<SnakeBodyPart> snakeBodyPartList;
     private bool _isAlive;
@@ -25,16 +24,14 @@ public class Snake : MonoBehaviour
 
     public Rigidbody2D rb;
     public Transform segmentPrefab;
-    public static int initialSize;
+    public int initialSize;
 
     public static event Action OnPlayerDeath;
 
     private void Awake()
     {
-        initialSize = 4;
-        gridMoveDirection = Direction.Right;
+        gridMoveDirection = Direction.Up;
         gridPosition = Vector2Int.zero;
-        _segments = new List<Transform>();
         snakeMovePositionList = new List<SnakeMovePosition>();
         snakeBodyPartList = new List<SnakeBodyPart>();
         _isAlive = true;
@@ -142,29 +139,15 @@ public class Snake : MonoBehaviour
         }
     }
 
-
-    // should be refactored
     public void Grow()
     {
         Transform segment = Instantiate(segmentPrefab);
-
-        segment.position = _segments[_segments.Count - 1].position;
-
-        _segments.Add(segment);
         snakeBodyPartList.Add(new SnakeBodyPart(segment));
         GameManager.Instance.IncreaseScore(1);
     }
 
     private void ResetState()
     {
-        for (int i = 1; i < _segments.Count; i++)
-        {
-            Destroy(_segments[i].gameObject);
-        }
-
-        _segments.Clear();
-        _segments.Add(transform);
-
         for (int i = 1; i < initialSize; i++)
         {
             Grow();
@@ -198,6 +181,11 @@ public class Snake : MonoBehaviour
     public void Die()
     {
         OnPlayerDeath?.Invoke();
+    }
+
+    public int GetInitialSize()
+    {
+        return initialSize;
     }
 
     private class SnakeBodyPart
