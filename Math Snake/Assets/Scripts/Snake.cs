@@ -16,23 +16,18 @@ public class Snake : MonoBehaviour
     }
     private Direction gridMoveDirection;
     private Vector2Int gridPosition;
-    private List<Transform> _segments;
+    private List<Transform> _segments; // to be deleted
     private List<SnakeMovePosition> snakeMovePositionList;
     private List<SnakeBodyPart> snakeBodyPartList;
-    private MathUnit mathUnit;
     private bool _isAlive;
-    private int _score;
+
     private bool _startedMoving;
 
     public Rigidbody2D rb;
     public Transform segmentPrefab;
     public static int initialSize;
-    public static event Action OnPlayerDeath;
-    public TextMeshProUGUI scoreText;
-    public ComplexityDropdown complexityDropdown;
-    public SnakeColorDropdown snakeColorDropdown;
 
-    [SerializeField] GameObject mathObject;
+    public static event Action OnPlayerDeath;
 
     private void Awake()
     {
@@ -42,10 +37,7 @@ public class Snake : MonoBehaviour
         _segments = new List<Transform>();
         snakeMovePositionList = new List<SnakeMovePosition>();
         snakeBodyPartList = new List<SnakeBodyPart>();
-        mathUnit = GetComponent<MathUnit>();
         _isAlive = true;
-        _score = -initialSize + 1;
-        _startedMoving = false;
     }
 
 
@@ -57,13 +49,6 @@ public class Snake : MonoBehaviour
     private void OnDisable()
     {
         OnPlayerDeath -= EnableMovement;
-    }
-
-    private void Start()
-    {
-        mathUnit = mathObject.GetComponent<MathUnit>();
-        complexityDropdown.SetSpeed();
-        snakeColorDropdown.SetSnakeColor();
     }
 
     private void Update()
@@ -159,7 +144,7 @@ public class Snake : MonoBehaviour
 
 
     // should be refactored
-    private void Grow()
+    public void Grow()
     {
         Transform segment = Instantiate(segmentPrefab);
 
@@ -167,8 +152,7 @@ public class Snake : MonoBehaviour
 
         _segments.Add(segment);
         snakeBodyPartList.Add(new SnakeBodyPart(segment));
-        _score++;
-        scoreText.text = $"Score: {(_score).ToString()}";
+        GameManager.Instance.IncreaseScore(1);
     }
 
     private void ResetState()
@@ -189,54 +173,32 @@ public class Snake : MonoBehaviour
         transform.position = Vector3.zero;
     }
 
-    private void ResetFood()
-    {
-        GameObject.Find("FoodSpawn").GetComponent<FoodSpawn>().ChangeFoodPosition();
-        mathUnit.ExecuteRandomOperation();
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Food"))
         {
-            if (mathUnit.CheckAnswer(other.GetComponent<Food>().GetValue()))
-            {
-                Grow();
-            }
-            else
-            {
-                SaveScore();
-                OnPlayerDeath?.Invoke();
-            }
-            ResetFood();
+            GameManager.Instance.HandleFoodCollision(other.GetComponent<Food>());
         }
         else if (other.CompareTag("Obstacle"))
         {
-            SaveScore();
-            OnPlayerDeath?.Invoke();
+            GameManager.Instance.HandleObstacleCollision();
         }
     }
 
-    private void DisableMovement()
+    public void DisableMovement()
     {
         _isAlive = false;
     }
 
-    private void EnableMovement()
+    public void EnableMovement()
     {
         _isAlive = true;
     }
 
-    private void SaveScore()
+    public void Die()
     {
-        PlayerPrefs.SetInt("Score", _score);
-        string best = $"BestScore-{PlayerPrefs.GetInt("Speed")}-{PlayerPrefs.GetInt("Fruit")}";
-        if (_score > PlayerPrefs.GetInt(best, 0))
-        {
-            PlayerPrefs.SetInt(best, _score);
-        }
+        OnPlayerDeath?.Invoke();
     }
-
 
     private class SnakeBodyPart
     {

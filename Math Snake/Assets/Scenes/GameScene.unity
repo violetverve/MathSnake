@@ -5479,6 +5479,55 @@ RectTransform:
   m_AnchoredPosition: {x: 5, y: -0.5}
   m_SizeDelta: {x: -30, y: -3}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1168230465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1168230467}
+  - component: {fileID: 1168230466}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1168230466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168230465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81212541388c7045aaa61d4c56ef2ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snakeObject: {fileID: 1421372797}
+  mathUnit: {fileID: 1113228815}
+  scoreText: {fileID: 122367695}
+  complexityDropdown: {fileID: 243239240}
+  snakeColorDropdown: {fileID: 1083813128}
+--- !u!4 &1168230467
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168230465}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.2049882, y: -0.87864286, z: -0.02515437}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1206312502
 GameObject:
   m_ObjectHideFlags: 0
@@ -6329,11 +6378,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1421372800}
   segmentPrefab: {fileID: 905083904748196985, guid: 8e0ede465bd461140a02c0d26e49372d, type: 3}
-  snakeTailPrefab: {fileID: 905083904748196985, guid: a7402d522e7d9934aa55bd589be30665, type: 3}
-  scoreText: {fileID: 122367695}
-  complexityDropdown: {fileID: 243239240}
-  snakeColorDropdown: {fileID: 1083813128}
-  mathObject: {fileID: 1113228814}
 --- !u!61 &1421372799
 BoxCollider2D:
   m_ObjectHideFlags: 0
