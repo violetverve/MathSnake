@@ -141,8 +141,18 @@ public class Snake : MonoBehaviour
 
     public void Grow()
     {
-        Transform segment = Instantiate(segmentPrefab);
-        snakeBodyPartList.Add(new SnakeBodyPart(segment));
+
+        Vector2Int lastMovePosition = Vector2Int.zero;
+        Vector3 eulerAngles = Vector3.zero;
+
+        if (snakeBodyPartList.Count > 0 && snakeMovePositionList.Count > 0)
+        {
+            lastMovePosition = snakeBodyPartList[snakeBodyPartList.Count - 1].GetGridPosition();
+            eulerAngles = snakeBodyPartList[snakeBodyPartList.Count - 1].GetEulerAngles();
+        }
+
+        snakeBodyPartList.Add(new SnakeBodyPart(segmentPrefab, lastMovePosition, eulerAngles));
+
         GameManager.Instance.IncreaseScore(1);
     }
 
@@ -194,9 +204,13 @@ public class Snake : MonoBehaviour
         private SnakeMovePosition snakeMovePosition;
         private Transform transform;
 
-        public SnakeBodyPart(Transform transform)
+        public SnakeBodyPart(Transform segmentPrefab, Vector2Int position, Vector3 eulerAngles)
         {
-            this.transform = transform;
+            GameObject snakeBodyGameObject = GameObject.Instantiate(segmentPrefab.gameObject);
+            snakeBodyGameObject.name = "SnakeBody";
+            snakeBodyGameObject.transform.position = new Vector3(position.x, position.y);
+            snakeBodyGameObject.transform.eulerAngles = eulerAngles;
+            transform = snakeBodyGameObject.transform;
         }
 
         public void SetSnakeMovePosition(SnakeMovePosition snakeMovePosition)
@@ -278,6 +292,16 @@ public class Snake : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 0, angle);
         }
 
+        public Vector2Int GetGridPosition()
+        {
+            return snakeMovePosition.GetGridPosition();
+        }
+
+        public Vector3 GetEulerAngles()
+        {
+            return transform.eulerAngles;
+        }
+
     }
 
 
@@ -309,6 +333,5 @@ public class Snake : MonoBehaviour
         {
             return previousSnakeMovePosition?.direction ?? Direction.Right;
         }
-
     }
 }

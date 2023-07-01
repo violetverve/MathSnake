@@ -5125,7 +5125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropdown: {fileID: 1083813125}
   snake: {fileID: 1421372797}
-  snakeSegmentPrefab: {fileID: 5899495045417593271, guid: 7a6d91d33579a574db1f6cae9fb901a0, type: 3}
+  snakeSegmentPrefab: {fileID: 5899495045417593271, guid: 8e0ede465bd461140a02c0d26e49372d, type: 3}
 --- !u!1 &1094567589
 GameObject:
   m_ObjectHideFlags: 0
@@ -6378,6 +6378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1421372800}
   segmentPrefab: {fileID: 905083904748196985, guid: 8e0ede465bd461140a02c0d26e49372d, type: 3}
+  initialSize: 4
 --- !u!61 &1421372799
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6491,7 +6492,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e61c1edb94c5ea14790b3481ed835312, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f659a5a1d32fa8e4cadec7dc0e80027e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
