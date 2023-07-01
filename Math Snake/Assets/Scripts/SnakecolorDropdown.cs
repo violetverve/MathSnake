@@ -8,6 +8,14 @@ public class SnakeColorDropdown : MonoBehaviour
     public GameObject snake;
     public GameObject snakeSegmentPrefab;
 
+    public Sprite snakeHeadGreen;
+    public Sprite snakeHeadYellow;
+    public Sprite snakeHeadBlue;
+
+    public Sprite snakeBodyGreen;
+    public Sprite snakeBodyYellow;
+    public Sprite snakeBodyBlue;
+
     private const string DropdownPrefsKey = "SnakeColor";
 
     public void SaveSnakeColor()
@@ -27,22 +35,28 @@ public class SnakeColorDropdown : MonoBehaviour
         switch (dropdown.value)
         {
             case 0:
-                SetColor(Color.green);
+                SetSprite(snakeHeadGreen, snakeBodyGreen);
                 break;
             case 1:
-                SetColor(Color.yellow);
+                SetSprite(snakeHeadYellow, snakeBodyYellow);
                 break;
             case 2:
-                SetColor(Color.blue);
+                SetSprite(snakeHeadBlue, snakeBodyBlue);
                 break;
         }
     }
-    
-    private void SetColor(Color color)
+
+    private void SetSprite(Sprite headSprite, Sprite bodySprite)
     {
-        snake.GetComponent<Renderer>().material.color = color;
-        snakeSegmentPrefab.GetComponent<SpriteRenderer>().color = color;
+        snake.GetComponent<SpriteRenderer>().sprite = headSprite;
+        snakeSegmentPrefab.GetComponent<SpriteRenderer>().sprite = bodySprite;
     }
+
+    // private void SetColor(Color color)
+    // {
+    //     snake.GetComponent<Renderer>().material.color = color;
+    //     snakeSegmentPrefab.GetComponent<SpriteRenderer>().color = color;
+    // }
 
 
 
