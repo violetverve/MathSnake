@@ -3,6 +3,20 @@ using TMPro;
 
 public class Food : MonoBehaviour
 {
+    public int timeToGrow;
+
+    private int _timeCounter;
+
+    private float _growthAmount;
+
+    private bool _isGrowing;
+
+    private void Awake()
+    {
+        _timeCounter = 0;
+        _growthAmount = 0.15f;
+        _isGrowing = true;
+    }
 
     public int GetValue()
     {
@@ -24,6 +38,18 @@ public class Food : MonoBehaviour
         }
 
         return 0;
+    }
+
+    private void FixedUpdate()
+    {
+        transform.localScale += _isGrowing ? new Vector3(_growthAmount, _growthAmount, _growthAmount)
+                                        : new Vector3(-_growthAmount, -_growthAmount, -_growthAmount);
+
+        if (++_timeCounter >= timeToGrow)
+        {
+            _isGrowing = !_isGrowing;
+            _timeCounter = 0;
+        }
     }
 
 }
