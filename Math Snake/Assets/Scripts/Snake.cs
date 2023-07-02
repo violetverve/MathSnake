@@ -26,6 +26,7 @@ public class Snake : MonoBehaviour
     public Transform segmentPrefab;
     public int initialSize;
 
+
     public static event Action OnPlayerDeath;
 
     private void Awake()
@@ -196,6 +197,16 @@ public class Snake : MonoBehaviour
     public int GetInitialSize()
     {
         return initialSize;
+    }
+
+    public Vector2Int GetGridPosition()
+    {
+        return gridPosition;
+    }
+
+    public bool GetAlive()
+    {
+        return _isAlive;
     }
 
     private class SnakeBodyPart

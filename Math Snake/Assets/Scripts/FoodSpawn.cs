@@ -10,6 +10,7 @@ public class FoodSpawn : MonoBehaviour
     public FruitDropdown fruitDropdown;
 
     private List<Transform> _foods = new List<Transform>();
+    private List<Vector3> _positions = new List<Vector3>();
 
     public int numberOfFood = 1;
 
@@ -20,7 +21,7 @@ public class FoodSpawn : MonoBehaviour
     }
 
     public void SpawnFood(Vector3 position)
-    {       
+    {
         GameObject newFood = Instantiate(foodPrefab, position, Quaternion.identity);
 
         _foods.Add(newFood.transform);
@@ -59,8 +60,9 @@ public class FoodSpawn : MonoBehaviour
             positions.Add(position);
         }
 
-        return positions;
+        _positions = positions;
 
+        return positions;
     }
 
     private Vector3 RandomizePosition()
@@ -75,9 +77,16 @@ public class FoodSpawn : MonoBehaviour
 
     public void ChangeFoodPosition()
     {
-        foreach (Transform food in _foods)
+        List<Vector3> positions = RandomizePositions();
+
+        for (int i = 0; i < _foods.Count; i++)
         {
-            food.position = RandomizePosition();
+            _foods[i].position = positions[i];
         }
+    }
+
+    public List<Vector3> GetFoodPositions()
+    {
+        return _positions;
     }
 }
