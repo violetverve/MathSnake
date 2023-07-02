@@ -97,6 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28274ac29bac54145820705e4217d0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseColor: {r: 0.46750477, g: 0.6792453, b: 0.40626556, a: 1}
-  _offsetColor: {r: 0.40658748, g: 0.6415094, b: 0.34133142, a: 1}
+  _baseColor: {r: 0.44313726, g: 0.6745098, b: 0.4, a: 1}
+  _offsetColor: {r: 0.3882353, g: 0.6392157, b: 0.34117648, a: 1}
   _spriteRenderer: {fileID: 545958928828150450}
