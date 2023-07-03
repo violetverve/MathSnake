@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public GameObject snakeObject;
     public MathUnit mathUnit;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI bestScoreText;
+    public GameObject bestScorePanel;
     public ComplexityDropdown complexityDropdown;
     public SnakeColorDropdown snakeColorDropdown;
     public Animator animator;
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
         complexityDropdown.SetSpeed();
         snakeColorDropdown.SetSnakeColor();
         _score = -_snakeScript.GetInitialSize() + 1;
+        LoadBestScore();
     }
 
     private void FixedUpdate()
@@ -41,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void SaveScore()
+    private void SaveScores()
     {
         PlayerPrefs.SetInt("Score", _score);
         string best = $"BestScore-{PlayerPrefs.GetInt("Speed")}-{PlayerPrefs.GetInt("Fruit")}";
@@ -65,7 +68,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            SaveScore();
+            SaveScores();
             _snakeScript.Die();
         }
         ResetFood();
@@ -73,15 +76,31 @@ public class GameManager : MonoBehaviour
 
     public void HandleObstacleCollision()
     {
-        SaveScore();
+        SaveScores();
         _snakeScript.Die();
     }
 
     public void IncreaseScore(int amount)
     {
         _score += amount;
-        scoreText.text = $"Score: {_score.ToString()}";
+        scoreText.text = _score.ToString();
     }
+
+    public void LoadBestScore()
+    {
+        string best = $"BestScore-{PlayerPrefs.GetInt("Speed")}-{PlayerPrefs.GetInt("Fruit")}";
+
+        int bestScore = PlayerPrefs.GetInt(best, 0);
+        bool hasBestScore = bestScore > 0;
+
+        bestScorePanel.SetActive(hasBestScore);
+        bestScoreText.text = bestScore.ToString();
+    }
+
+    // {
+    //     string best = $"BestScore-{PlayerPrefs.GetInt("Speed")}-{PlayerPrefs.GetInt("Fruit")}";
+    //     scoreText.text = $"Best Score: {PlayerPrefs.GetInt(best, 0)}";
+    // }
 
     public void HandleTongueAnimation()
     {
