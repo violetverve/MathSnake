@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e574cee71218bbd4688522ee215f7c04
+guid: 11337960452b0b14d9324d4a33786ca2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tongueHide_0
+      name: tongueMoves-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4625088963c62d244868d9c15842b58e
-      internalID: -1641003101
+      spriteID: 9df45fc38f9fd1549a819fb3d84f6f7c
+      internalID: 1578506301
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tongueHide_1
+      name: tongueMoves-Sheet_1
       rect:
         serializedVersion: 2
         x: 16
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50c78f57f99a069409e19917b417aca2
-      internalID: 182177557
+      spriteID: 7bc784c7b328c9d40a19ff60ab2fc5e3
+      internalID: 771088874
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tongueHide_2
+      name: tongueMoves-Sheet_2
       rect:
         serializedVersion: 2
         x: 32
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a57abed675d55e48829c0aeb61b60b4
-      internalID: 396602267
+      spriteID: 3d6ecb41af541624184191a15cf11fd3
+      internalID: 183048589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tongueHide_3
+      name: tongueMoves-Sheet_3
       rect:
         serializedVersion: 2
         x: 48
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afedb5d76698e24409f7615061f3556f
-      internalID: 152482386
+      spriteID: 1a992b0c5ab180542a486dd04cb0fa3d
+      internalID: 103974278
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tongueHide_4
+      name: tongueMoves-Sheet_4
       rect:
         serializedVersion: 2
         x: 64
@@ -221,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 966ec244d5d16e14fab06d5cc4ecb90c
-      internalID: 315625559
+      spriteID: 1ec0acb136d30d54aa0503268587c10e
+      internalID: 702571188
       vertices: []
       indices: 
       edges: []
@@ -238,11 +238,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tongueHide_0: -1641003101
-      tongueHide_1: 182177557
-      tongueHide_2: 396602267
-      tongueHide_3: 152482386
-      tongueHide_4: 315625559
+      tongueMoves-Sheet_0: 1578506301
+      tongueMoves-Sheet_1: 771088874
+      tongueMoves-Sheet_2: 183048589
+      tongueMoves-Sheet_3: 103974278
+      tongueMoves-Sheet_4: 702571188
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

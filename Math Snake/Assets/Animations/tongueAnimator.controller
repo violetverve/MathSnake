@@ -53,7 +53,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: tongueSheet_0
+  m_Name: tongueAnimator
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: ShowTongue
@@ -61,7 +61,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -145,7 +145,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 699edea757e5cee41b9e6fff3e8ead1d, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0aa862498dd7e444ba51787ffbbb8a34, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -219,7 +219,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 9a4d1501907e7ab4188d3eca9c16f5dd, type: 2}
+  m_Motion: {fileID: 7400000, guid: 95aa43b0b5c57fa43b9555c51999f1b3, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -246,7 +246,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 699edea757e5cee41b9e6fff3e8ead1d, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0aa862498dd7e444ba51787ffbbb8a34, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
