@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
     public void IncreaseScore(int amount)
     {
         _score += amount;
-        scoreText.text = $"<sprite name=\"Apple\">: {_score}";
+        scoreText.text = $"<sprite name=\"Apple\"> {_score}";
     }
 
     public void LoadBestScore()
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
         bool hasBestScore = bestScore > 0;
 
         bestScorePanel.SetActive(hasBestScore);
-        bestScoreText.text = $"<sprite name=\"Cup\">: {bestScore}";
+        bestScoreText.text = $"<sprite name=\"Cup\"> {bestScore}";
     }
 
     public void HandleTongueAnimation()

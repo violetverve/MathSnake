@@ -91,13 +91,13 @@ public class UIManager : MonoBehaviour
         string best = $"BestScore-{PlayerPrefs.GetInt("Speed")}-{PlayerPrefs.GetInt("Fruit")}";
         if (PlayerPrefs.HasKey(best))
         {
-            bestScoreText.text = $"<sprite name=\"Cup\">: {PlayerPrefs.GetInt(best)}";
+            bestScoreText.text = $"<sprite name=\"Cup\"> {PlayerPrefs.GetInt(best)}";
         }
         else
         {
             bestScoreText.text = "";
         }
-        scoreText.text = $"<sprite name=\"Apple\">: {PlayerPrefs.GetInt("Score", 0)}";
+        scoreText.text = $"<sprite name=\"Apple\"> {PlayerPrefs.GetInt("Score", 0)}";
     }
 
 }
