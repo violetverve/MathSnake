@@ -25,6 +25,7 @@ public class Snake : MonoBehaviour
     public Rigidbody2D rb;
     public Transform segmentPrefab;
     public int initialSize;
+    public List<AudioSource> snakeMoveSounds;
 
 
     public static event Action OnPlayerDeath;
@@ -51,7 +52,8 @@ public class Snake : MonoBehaviour
 
     private void Update()
     {
-        if (!_startedMoving && Input.anyKeyDown)
+        if (!_startedMoving && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)
+        || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)))
         {
             _startedMoving = true;
             ResetState();
@@ -59,8 +61,10 @@ public class Snake : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
+
             if (gridMoveDirection != Direction.Down)
             {
+                snakeMoveSounds[1].Play();
                 gridMoveDirection = Direction.Up;
             }
         }
@@ -68,6 +72,7 @@ public class Snake : MonoBehaviour
         {
             if (gridMoveDirection != Direction.Up)
             {
+                snakeMoveSounds[3].Play();
                 gridMoveDirection = Direction.Down;
             }
         }
@@ -75,6 +80,7 @@ public class Snake : MonoBehaviour
         {
             if (gridMoveDirection != Direction.Right)
             {
+                snakeMoveSounds[0].Play();
                 gridMoveDirection = Direction.Left;
             }
         }
@@ -82,6 +88,7 @@ public class Snake : MonoBehaviour
         {
             if (gridMoveDirection != Direction.Left)
             {
+                snakeMoveSounds[2].Play();
                 gridMoveDirection = Direction.Right;
             }
         }

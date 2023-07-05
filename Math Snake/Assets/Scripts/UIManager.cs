@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public Toggle _multiplicationToggle;
     public Toggle _divisionToggle;
     private static Dictionary<Toggle, string> toggleKeyMap;
+    public AudioSource clickSound;
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI bestScoreText;
@@ -98,6 +99,16 @@ public class UIManager : MonoBehaviour
             bestScoreText.text = "";
         }
         scoreText.text = $"<sprite name=\"Apple\"> {PlayerPrefs.GetInt("Score", 0)}";
+    }
+
+    public void PlayClickSound()
+    {
+        clickSound.Play();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
 }

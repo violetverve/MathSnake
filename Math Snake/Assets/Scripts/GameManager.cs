@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public ComplexityDropdown complexityDropdown;
     public SnakeColorDropdown snakeColorDropdown;
     public Animator animator;
+    public AudioSource crunchSound;
+    public AudioSource hitSound;
 
     private Snake _snakeScript;
     private int _score;
@@ -62,6 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void HandleFoodCollision(Food food)
     {
+        crunchSound.Play();
         if (mathUnit.CheckAnswer(food.GetValue()))
         {
             _snakeScript.Grow();
@@ -76,6 +79,7 @@ public class GameManager : MonoBehaviour
 
     public void HandleObstacleCollision()
     {
+        hitSound.Play();
         SaveScores();
         _snakeScript.Die();
     }
