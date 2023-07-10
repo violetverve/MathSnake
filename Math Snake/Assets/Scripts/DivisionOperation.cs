@@ -10,9 +10,9 @@ public class DivisionOperation : Operation
         return b;
     }
 
-    public override char GetOperatorSymbol()
+    public override string GetOperatorSymbol()
     {
-        return '/';
+        return "<sprite name=\"DivisionSign\">";
     }
 
     public override string GetExampleText(int a, int b)

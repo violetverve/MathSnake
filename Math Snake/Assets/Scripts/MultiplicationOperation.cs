@@ -10,9 +10,9 @@ public class MultiplicationOperation : Operation
         return a * b;
     }
 
-    public override char GetOperatorSymbol()
+    public override string GetOperatorSymbol()
     {
-        return '*';
+        return "<sprite name=\"MultiplicationSign\">";
     }
 
     public override void SetMaxValue(int maxValueAddSub, int maxValueMultDiv)

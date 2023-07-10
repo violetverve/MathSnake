@@ -9,9 +9,9 @@ public class SubtractionOperation : Operation
         return a - b;
     }
 
-    public override char GetOperatorSymbol()
+    public override string GetOperatorSymbol()
     {
-        return '-';
+        return "-";
     }
 
     public override void SetMaxValue(int maxValueAddSub, int maxValueMultDiv)

@@ -9,7 +9,7 @@ public abstract class Operation
     public int MaxValue => _maxValue;
     public abstract OperationType OperationType { get; }
     public abstract int PerformOperation(int a, int b);
-    public abstract char GetOperatorSymbol();
+    public abstract string GetOperatorSymbol();
     public abstract void SetMaxValue(int maxValueAddSub, int maxValueMultDiv);
 
     public virtual string GetExampleText(int a, int b)
