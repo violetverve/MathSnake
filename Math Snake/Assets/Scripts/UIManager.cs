@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
 
     public void Start()
     {
+        gameOverMenu.SetActive(false);
         InitializeToggleKeyMap();
         SetToggles();
     }
