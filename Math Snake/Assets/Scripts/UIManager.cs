@@ -58,6 +58,7 @@ public class UIManager : MonoBehaviour
 
     public void RestartGame()
     {
+        gameOverMenu.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
