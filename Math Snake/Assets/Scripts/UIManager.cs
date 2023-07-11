@@ -21,11 +21,28 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI bestScoreText;
 
+    private bool isFirstPlay = true;
+
+    private void Awake()
+    {
+        isFirstPlay = PlayerPrefs.GetInt("FirstPlay", 1) == 1;
+    }
+
     public void Start()
     {
-        gameOverMenu.SetActive(false);
         InitializeToggleKeyMap();
         SetToggles();
+
+        if (isFirstPlay)
+        {
+            gameOverMenu.SetActive(true);
+            statisticsPanel.SetActive(false);
+            PlayerPrefs.SetInt("FirstPlay", 0);
+        }
+        else
+        {
+            gameOverMenu.SetActive(false);
+        }
     }
 
     private void InitializeToggleKeyMap()
@@ -110,6 +127,7 @@ public class UIManager : MonoBehaviour
 
     public void QuitGame()
     {
+        PlayerPrefs.SetInt("FirstPlay", 1);
         Application.Quit();
     }
 
