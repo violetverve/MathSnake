@@ -17,18 +17,22 @@ public class UIManager : MonoBehaviour
     public Toggle _divisionToggle;
     private static Dictionary<Toggle, string> toggleKeyMap;
     public AudioSource clickSound;
-
+    public TextMeshProUGUI soundButtonText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI bestScoreText;
 
+
     private bool _isFirstPlay = true;
     private GameManager _gameManager;
+    private bool _isSoundOn = true;
 
 
     private void Awake()
     {
         _isFirstPlay = PlayerPrefs.GetInt("FirstPlay", 1) == 1;
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _isSoundOn = PlayerPrefs.GetInt("Sound", 1) == 1;
+        SetSound(_isSoundOn);
     }
 
     public void Start()
@@ -125,7 +129,7 @@ public class UIManager : MonoBehaviour
 
     public void PlayClickSound()
     {
-        if (_gameManager.GetInitialSetupDone())
+        if (_gameManager.GetInitialSetupDone() && _isSoundOn)
         {
             clickSound.Play();
         }
@@ -137,4 +141,27 @@ public class UIManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void ChangeSoundSetting()
+    {
+        _isSoundOn = !_isSoundOn;
+        SetSound(_isSoundOn);
+        PlayerPrefs.SetInt("Sound", _isSoundOn ? 1 : 0);
+    }
+
+    private void SetSound(bool isSoundOn)
+    {
+        AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
+
+        SetSoundButtonSprite(isSoundOn);
+
+        foreach (AudioSource audioSource in audioSources)
+        {
+            audioSource.mute = !isSoundOn;
+        }
+    }
+
+    private void SetSoundButtonSprite(bool isSoundOn)
+    {
+        soundButtonText.text = isSoundOn ? "<sprite name=\"SoundOn\">" : "<sprite name=\"SoundOff\">";
+    }
 }
