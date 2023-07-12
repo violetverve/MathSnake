@@ -37,6 +37,8 @@ public class Snake : MonoBehaviour
         snakeMovePositionList = new List<SnakeMovePosition>();
         snakeBodyPartList = new List<SnakeBodyPart>();
         _isAlive = true;
+
+        ResetState();
     }
 
 
@@ -56,7 +58,6 @@ public class Snake : MonoBehaviour
         || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)))
         {
             _startedMoving = true;
-            ResetState();
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -129,7 +130,6 @@ public class Snake : MonoBehaviour
         UpdateSnakeBodyParts();
     }
 
-
     private float GetAngleFromVector(Vector2Int dir)
     {
         float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -141,11 +141,22 @@ public class Snake : MonoBehaviour
     {
         int minSize = Mathf.Min(snakeBodyPartList.Count, snakeMovePositionList.Count);
 
-        for (int i = 0; i < minSize; i++)
+        for (int i = 0; i < snakeBodyPartList.Count; i++)
         {
-            snakeBodyPartList[i].SetSnakeMovePosition(snakeMovePositionList[i]);
+            if (i < minSize)
+            {
+                snakeBodyPartList[i].SetSnakeMovePosition(snakeMovePositionList[i]);
+            }
+            else
+            {
+                Vector2Int lastMovePosition = snakeBodyPartList[snakeMovePositionList.Count - 1].GetGridPosition();
+                snakeBodyPartList[i].GetTransform().position = new Vector3(lastMovePosition.x,
+                 lastMovePosition.y - (i - minSize + 1));
+            }
         }
     }
+
+
 
     public void Grow()
     {
@@ -171,8 +182,14 @@ public class Snake : MonoBehaviour
             Grow();
         }
 
+        for (int i = 0; i < snakeBodyPartList.Count; i++)
+        {
+            snakeBodyPartList[i].GetTransform().position = new Vector3(gridPosition.x, -i - 1);
+        }
+
         transform.position = Vector3.zero;
     }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -320,6 +337,11 @@ public class Snake : MonoBehaviour
             return transform.eulerAngles;
         }
 
+        public Transform GetTransform()
+        {
+            return transform;
+        }
+
     }
 
 
@@ -349,7 +371,7 @@ public class Snake : MonoBehaviour
 
         public Direction GetPreviousDirection()
         {
-            return previousSnakeMovePosition?.direction ?? Direction.Right;
+            return previousSnakeMovePosition?.direction ?? Direction.Up;
         }
     }
 }
