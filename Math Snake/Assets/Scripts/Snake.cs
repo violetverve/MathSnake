@@ -54,6 +54,7 @@ public class Snake : MonoBehaviour
 
     private void Update()
     {
+        if (!_isAlive) return;
         if (!_startedMoving && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)
         || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)))
         {

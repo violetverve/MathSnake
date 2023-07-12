@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -23,7 +24,14 @@ public class GameManager : MonoBehaviour
     private int _score;
     private bool _showTongue;
 
+    private bool _initialSetupDone = false;
+
     private void Awake()
+    {
+        StartCoroutine(InitializeGameCoroutine());
+    }
+
+    private IEnumerator InitializeGameCoroutine()
     {
         Instance = this;
         _snakeScript = snakeObject.GetComponent<Snake>();
@@ -31,6 +39,11 @@ public class GameManager : MonoBehaviour
         snakeColorDropdown.SetSnakeColor();
         _score = -_snakeScript.GetInitialSize() + 1;
         LoadBestScore();
+
+        yield return null;
+
+
+        _initialSetupDone = true;
     }
 
     private void FixedUpdate()
@@ -123,6 +136,11 @@ public class GameManager : MonoBehaviour
     private float GetDistance(Vector3 position1, Vector3 position2)
     {
         return Mathf.Sqrt(Mathf.Pow(position1.x - position2.x, 2) + Mathf.Pow(position1.y - position2.y, 2));
+    }
+
+    public bool GetInitialSetupDone()
+    {
+        return _initialSetupDone;
     }
 
 }
