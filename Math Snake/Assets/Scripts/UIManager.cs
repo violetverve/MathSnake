@@ -127,7 +127,6 @@ public class UIManager : MonoBehaviour
     {
         if (_gameManager.GetInitialSetupDone())
         {
-            Debug.Log("PlayClickSound");
             clickSound.Play();
         }
     }
