@@ -4,6 +4,7 @@ using TMPro;
 public class Food : MonoBehaviour
 {
     public int timeToGrow;
+    private Snake _snakeScript;
 
     private int _timeCounter;
 
@@ -16,6 +17,7 @@ public class Food : MonoBehaviour
         _timeCounter = 0;
         _growthAmount = 0.15f;
         _isGrowing = true;
+        _snakeScript = GameObject.Find("Snake").GetComponent<Snake>();
     }
 
     public int GetValue()
@@ -42,6 +44,8 @@ public class Food : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!_snakeScript.GetAlive()) return;
+
         transform.localScale += _isGrowing ? new Vector3(_growthAmount, _growthAmount, _growthAmount)
                                         : new Vector3(-_growthAmount, -_growthAmount, -_growthAmount);
 
