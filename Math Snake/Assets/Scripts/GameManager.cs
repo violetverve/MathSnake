@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public GameObject snakeObject;
+    public GameObject particleObject;
     public MathUnit mathUnit;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI bestScoreText;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     public AudioSource hitSound;
 
     private Snake _snakeScript;
+    private ParticleManager _particleManager;
     private int _score;
     private bool _showTongue;
 
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         _snakeScript = snakeObject.GetComponent<Snake>();
+        _particleManager = particleObject.GetComponent<ParticleManager>();
         complexityDropdown.SetSpeed();
         snakeColorDropdown.SetSnakeColor();
         _score = -_snakeScript.GetInitialSize() + 1;
@@ -84,17 +87,17 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            SaveScores();
-            _snakeScript.Die();
+            StartCoroutine(DeathCoroutine(() => _particleManager.PlayMathParticle(
+                GetVector3From2(_snakeScript.GetGridPosition()))));
         }
         ResetFood();
     }
 
-    public void HandleObstacleCollision()
+    public void HandleSnakeCollision()
     {
         hitSound.Play();
-        SaveScores();
-        _snakeScript.Die();
+        StartCoroutine(DeathCoroutine(() => _particleManager.PlayHitParticle(
+            GetVector3From2(_snakeScript.GetGridPosition()))));
     }
 
     public void IncreaseScore(int amount)
@@ -118,7 +121,7 @@ public class GameManager : MonoBehaviour
     {
         _showTongue = false;
 
-        Vector3 headPosition = new Vector3(_snakeScript.GetGridPosition().x, _snakeScript.GetGridPosition().y, 0);
+        Vector3 headPosition = GetVector3From2(_snakeScript.GetGridPosition());
         List<Vector3> foodPositions = GameObject.Find("FoodSpawn").GetComponent<FoodSpawn>().GetFoodPositions();
 
         for (int i = 0; i < foodPositions.Count; i++)
@@ -141,6 +144,20 @@ public class GameManager : MonoBehaviour
     public bool GetInitialSetupDone()
     {
         return _initialSetupDone;
+    }
+
+    private IEnumerator DeathCoroutine(Action particleAction)
+    {
+        _snakeScript.DisableMovement();
+        particleAction.Invoke();
+        yield return new WaitForSeconds(2.5f);
+        SaveScores();
+        _snakeScript.Die();
+    }
+
+    public Vector3 GetVector3From2(Vector2 gridPosition)
+    {
+        return new Vector3(gridPosition.x, gridPosition.y, 0);
     }
 
 }

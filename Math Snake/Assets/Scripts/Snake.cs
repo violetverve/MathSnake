@@ -208,11 +208,16 @@ public class Snake : MonoBehaviour
         }
         else if (other.CompareTag("Obstacle"))
         {
-            GameManager.Instance.HandleObstacleCollision();
+            ShiftPosition();
+            GameManager.Instance.HandleSnakeCollision();
+        }
+        else if (other.CompareTag("Snake"))
+        {
+            GameManager.Instance.HandleSnakeCollision();
         }
     }
 
-    private void ShiftPosition()
+    public void ShiftPosition()
     {
         Vector3 prevHeadPosition = snakeBodyPartList[0].GetTransform().position;
 
@@ -220,8 +225,9 @@ public class Snake : MonoBehaviour
         snakeBodyPartList[0].GetTransform().position = new Vector3(newSegmentPosition.x, newSegmentPosition.y);
 
         transform.position = prevHeadPosition;
-    }
 
+        gridPosition = new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
+    }
 
     public void DisableMovement()
     {
@@ -235,7 +241,6 @@ public class Snake : MonoBehaviour
 
     public void Die()
     {
-        ShiftPosition();
         OnPlayerDeath?.Invoke();
     }
 
