@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ParticleManager : MonoBehaviour
@@ -7,12 +5,6 @@ public class ParticleManager : MonoBehaviour
 
     public GameObject mathParticle;
     public GameObject hitParticle;
-
-
-    void Update()
-    {
-
-    }
 
     public void PlayHitParticle(Vector3 position)
     {
