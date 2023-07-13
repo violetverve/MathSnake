@@ -64,7 +64,7 @@ public class Snake : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
 
-            if (gridMoveDirection != Direction.Down)
+            if (gridMoveDirection != Direction.Down && gridMoveDirection != Direction.Up)
             {
                 snakeMoveSounds[1].Play();
                 gridMoveDirection = Direction.Up;
@@ -72,7 +72,7 @@ public class Snake : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (gridMoveDirection != Direction.Up)
+            if (gridMoveDirection != Direction.Up && gridMoveDirection != Direction.Down)
             {
                 snakeMoveSounds[3].Play();
                 gridMoveDirection = Direction.Down;
@@ -80,7 +80,7 @@ public class Snake : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (gridMoveDirection != Direction.Right)
+            if (gridMoveDirection != Direction.Right && gridMoveDirection != Direction.Left)
             {
                 snakeMoveSounds[0].Play();
                 gridMoveDirection = Direction.Left;
@@ -88,7 +88,7 @@ public class Snake : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (gridMoveDirection != Direction.Left)
+            if (gridMoveDirection != Direction.Left && gridMoveDirection != Direction.Right)
             {
                 snakeMoveSounds[2].Play();
                 gridMoveDirection = Direction.Right;
