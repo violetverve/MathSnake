@@ -157,8 +157,6 @@ public class Snake : MonoBehaviour
         }
     }
 
-
-
     public void Grow()
     {
 
@@ -191,6 +189,16 @@ public class Snake : MonoBehaviour
         transform.position = Vector3.zero;
     }
 
+    public List<Vector3> GetSnakePositions()
+    {
+        List<Vector3> snakePositions = new List<Vector3>();
+        snakePositions.Add(transform.position);
+        for (int i = 0; i < snakeBodyPartList.Count; i++)
+        {
+            snakePositions.Add(snakeBodyPartList[i].GetTransform().position);
+        }
+        return snakePositions;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -8,11 +8,18 @@ public class FoodSpawn : MonoBehaviour
     public GameObject foodPrefab;
     public BoxCollider2D gridArea;
     public FruitDropdown fruitDropdown;
+    public int numberOfFood;
 
-    private List<Transform> _foods = new List<Transform>();
-    private List<Vector3> _positions = new List<Vector3>();
+    private List<Transform> _foods;
+    private List<Vector3> _positions;
+    private Snake _snake;
 
-    public int numberOfFood = 1;
+    private void Awake()
+    {
+        _foods = new List<Transform>();
+        _positions = new List<Vector3>();
+        _snake = GameObject.Find("Snake").GetComponent<Snake>();
+    }
 
     void Start()
     {
@@ -49,11 +56,12 @@ public class FoodSpawn : MonoBehaviour
     private List<Vector3> RandomizePositions()
     {
         List<Vector3> positions = new List<Vector3>();
+        List<Vector3> snakePositions = _snake.GetSnakePositions();
 
         for (int i = 0; i < numberOfFood; i++)
         {
             Vector3 position = RandomizePosition();
-            while (positions.Contains(position))
+            while (positions.Contains(position) || snakePositions.Contains(position))
             {
                 position = RandomizePosition();
             }
