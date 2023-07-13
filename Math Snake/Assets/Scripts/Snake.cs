@@ -212,6 +212,17 @@ public class Snake : MonoBehaviour
         }
     }
 
+    private void ShiftPosition()
+    {
+        Vector3 prevHeadPosition = snakeBodyPartList[0].GetTransform().position;
+
+        Vector2Int newSegmentPosition = snakeBodyPartList[snakeBodyPartList.Count - 1].GetPreviousGridPosition();
+        snakeBodyPartList[0].GetTransform().position = new Vector3(newSegmentPosition.x, newSegmentPosition.y);
+
+        transform.position = prevHeadPosition;
+    }
+
+
     public void DisableMovement()
     {
         _isAlive = false;
@@ -224,6 +235,7 @@ public class Snake : MonoBehaviour
 
     public void Die()
     {
+        ShiftPosition();
         OnPlayerDeath?.Invoke();
     }
 
@@ -351,12 +363,16 @@ public class Snake : MonoBehaviour
             return transform;
         }
 
+        public Vector2Int GetPreviousGridPosition()
+        {
+            return snakeMovePosition.GetPreviousGridPosition();
+        }
+
     }
 
 
     private class SnakeMovePosition
     {
-
         private SnakeMovePosition previousSnakeMovePosition;
         private Vector2Int gridPosition;
         private Direction direction;
@@ -381,6 +397,11 @@ public class Snake : MonoBehaviour
         public Direction GetPreviousDirection()
         {
             return previousSnakeMovePosition?.direction ?? Direction.Up;
+        }
+
+        public Vector2Int GetPreviousGridPosition()
+        {
+            return previousSnakeMovePosition?.gridPosition ?? new Vector2Int(0, 0);
         }
     }
 }
