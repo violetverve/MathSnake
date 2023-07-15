@@ -3,6 +3,7 @@ using UnityEngine;
 public class Particle : MonoBehaviour
 {
     public int speed;
+    public AudioSource sound;
 
     void Update()
     {
@@ -11,6 +12,7 @@ public class Particle : MonoBehaviour
 
     public void PlayParticle(Vector3 position)
     {
+        sound.Play();
         transform.position = position;
         GetComponent<ParticleSystem>().Play();
     }
