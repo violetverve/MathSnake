@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
 public class SettingsSlider : MonoBehaviour
 {
     public Slider slider;
@@ -12,7 +11,7 @@ public class SettingsSlider : MonoBehaviour
     {
         LoadSliderValue(slider.name);
         UpdateSliderText();
-        slider.onValueChanged.AddListener(delegate { UpdateSliderText(); SaveSliderValue(slider.name);});
+        slider.onValueChanged.AddListener(delegate { UpdateSliderText(); SaveSliderValue(slider.name); });
     }
 
     private void UpdateSliderText()

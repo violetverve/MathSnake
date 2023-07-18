@@ -51,13 +51,9 @@ public class SnakeColorDropdown : MonoBehaviour
         snake.GetComponent<SpriteRenderer>().sprite = headSprite;
         snakeSegmentPrefab.GetComponent<SpriteRenderer>().sprite = bodySprite;
     }
-
-    // private void SetColor(Color color)
-    // {
-    //     snake.GetComponent<Renderer>().material.color = color;
-    //     snakeSegmentPrefab.GetComponent<SpriteRenderer>().color = color;
-    // }
-
-
+    public string GetSelectedValue()
+    {
+        return dropdown.options[dropdown.value].text;
+    }
 
 }

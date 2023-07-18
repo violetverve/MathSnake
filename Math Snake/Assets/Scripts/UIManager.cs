@@ -18,19 +18,18 @@ public class UIManager : MonoBehaviour
     private static Dictionary<Toggle, string> toggleKeyMap;
     public AudioSource clickSound;
     public TextMeshProUGUI soundButtonText;
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI bestScoreText;
-
 
     private bool _isFirstPlay = true;
-    private GameManager _gameManager;
+    public GameManager gameManager;
+    private GameOverMenu _gameOverMenu;
+
     private bool _isSoundOn = true;
 
 
     private void Awake()
     {
         _isFirstPlay = PlayerPrefs.GetInt("FirstPlay", 1) == 1;
-        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _gameOverMenu = gameOverMenu.GetComponent<GameOverMenu>();
         _isSoundOn = PlayerPrefs.GetInt("Sound", 1) == 1;
         SetSound(_isSoundOn);
     }
@@ -77,7 +76,7 @@ public class UIManager : MonoBehaviour
     {
         settingsPanel.SetActive(false);
         statisticsPanel.SetActive(false);
-        SetScoreText();
+        _gameOverMenu.SetTexts();
         gameOverMenu.SetActive(true);
     }
 
@@ -113,23 +112,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void SetScoreText()
-    {
-        string best = $"BestScore-{PlayerPrefs.GetInt("Speed")}-{PlayerPrefs.GetInt("Fruit")}";
-        if (PlayerPrefs.HasKey(best))
-        {
-            bestScoreText.text = $"<sprite name=\"Cup\"> {PlayerPrefs.GetInt(best)}";
-        }
-        else
-        {
-            bestScoreText.text = "";
-        }
-        scoreText.text = $"<sprite name=\"Apple\"> {PlayerPrefs.GetInt("Score", 0)}";
-    }
-
     public void PlayClickSound()
     {
-        if (_gameManager.GetInitialSetupDone() && _isSoundOn)
+        if (gameManager.GetInitialSetupDone() && _isSoundOn)
         {
             clickSound.Play();
         }

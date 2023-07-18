@@ -9,8 +9,8 @@ public class ComplexityDropdown : MonoBehaviour
     private void Start()
     {
         LoadDropdownValue();
-        
-        dropdown.onValueChanged.AddListener(delegate { SaveDropdownValue();});
+
+        dropdown.onValueChanged.AddListener(delegate { SaveDropdownValue(); });
     }
 
     private void SaveDropdownValue()
@@ -39,5 +39,10 @@ public class ComplexityDropdown : MonoBehaviour
                 Time.fixedDeltaTime = 0.05f;
                 break;
         }
+    }
+
+    public string GetSelectedValue()
+    {
+        return dropdown.options[dropdown.value].text;
     }
 }

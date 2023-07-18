@@ -14,7 +14,7 @@ public class FruitDropdown : MonoBehaviour
     {
         LoadFruit();
         SetFoodNumber();
-        dropdown.onValueChanged.AddListener(delegate { SaveFruit();});
+        dropdown.onValueChanged.AddListener(delegate { SaveFruit(); });
     }
 
     public void SaveFruit()
@@ -31,6 +31,11 @@ public class FruitDropdown : MonoBehaviour
     {
         LoadFruit();
 
-        foodSpawn.numberOfFood = dropdown.value + (1*dropdown.value + 3);
+        foodSpawn.numberOfFood = dropdown.value + (1 * dropdown.value + 3);
+    }
+
+    public string GetSelectedValue()
+    {
+        return dropdown.options[dropdown.value].text;
     }
 }
