@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Linq;
 
 
-public class MathUnit: MonoBehaviour
+public class MathUnit : MonoBehaviour
 {
     public TextMeshProUGUI exampleText;
     public FoodSpawn foodSpawn;
@@ -16,9 +16,9 @@ public class MathUnit: MonoBehaviour
     private int _x;
     private int _y;
     private int _answer;
-    
+
     private static Dictionary<OperationType, Operation> _operations = new Dictionary<OperationType, Operation>();
-    
+
     private void Start()
     {
         Initialize();
@@ -30,7 +30,6 @@ public class MathUnit: MonoBehaviour
         return answer == _answer;
     }
 
-
     public void ExecuteRandomOperation()
     {
         int randomOperation = UnityEngine.Random.Range(0, _operations.Count);
@@ -41,7 +40,7 @@ public class MathUnit: MonoBehaviour
         (_x, _y) = operation.GenerateValues(1, 10);
 
         _answer = ApplyOperation(operationType, _x, _y);
-        
+
         SetExampleText(operationType);
         foodSpawn.SetFoodValues(operation.GetPossibleAnswers(_answer, foodSpawn.numberOfFood, 5, _x));
     }
@@ -78,7 +77,7 @@ public class MathUnit: MonoBehaviour
         foreach (var operationType in allOperationTypes)
         {
             Operation operation = (Operation)Activator.CreateInstance(operationType);
-        
+
             operation.SetMaxValue(PlayerPrefs.GetInt("SliderAddSub", 10), PlayerPrefs.GetInt("SliderMulDiv", 10));
 
             if (selectedOperations.Contains(operation.OperationType))
@@ -103,9 +102,7 @@ public class MathUnit: MonoBehaviour
     {
         if (_operations.ContainsKey(operationType))
         {
-            exampleText.text =  _operations[operationType].GetExampleText(_x, _y);
+            exampleText.text = _operations[operationType].GetExampleText(_x, _y);
         }
     }
-
-
 }

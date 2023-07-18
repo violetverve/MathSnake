@@ -8,12 +8,12 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
     public GameObject snakeObject;
     public GameObject particleObject;
+    public GameObject UIManagerObject;
+
     public MathUnit mathUnit;
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI bestScoreText;
+
     public GameObject bestScorePanel;
     public ComplexityDropdown complexityDropdown;
     public SnakeColorDropdown snakeColorDropdown;
@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     private Snake _snakeScript;
     private ParticleManager _particleManager;
+    private UIManager _uiManager;
+
     private int _score;
     private bool _showTongue;
 
@@ -33,19 +35,19 @@ public class GameManager : MonoBehaviour
         StartCoroutine(InitializeGameCoroutine());
     }
 
+
     private IEnumerator InitializeGameCoroutine()
     {
         Instance = this;
         _snakeScript = snakeObject.GetComponent<Snake>();
+        _uiManager = UIManagerObject.GetComponent<UIManager>();
         _particleManager = particleObject.GetComponent<ParticleManager>();
-        complexityDropdown.SetSpeed();
-        snakeColorDropdown.SetSnakeColor();
+
+        SetDropdowns();
         _score = -_snakeScript.GetInitialSize() + 1;
-        LoadBestScore();
 
         yield return null;
-
-
+        LoadBestScore();
         _initialSetupDone = true;
     }
 
@@ -103,7 +105,7 @@ public class GameManager : MonoBehaviour
     public void IncreaseScore(int amount)
     {
         _score += amount;
-        scoreText.text = $"<sprite name=\"Apple\"> {_score}";
+        if (_initialSetupDone) _uiManager.SetScoreText(_score);
     }
 
     public void LoadBestScore()
@@ -114,7 +116,7 @@ public class GameManager : MonoBehaviour
         bool hasBestScore = bestScore > 0;
 
         bestScorePanel.SetActive(hasBestScore);
-        bestScoreText.text = $"<sprite name=\"Cup\"> {bestScore}";
+        _uiManager.SetBestScoreText(bestScore);
     }
 
     public void HandleTongueAnimation()
@@ -158,6 +160,12 @@ public class GameManager : MonoBehaviour
     public Vector3 GetVector3From2(Vector2 gridPosition)
     {
         return new Vector3(gridPosition.x, gridPosition.y, 0);
+    }
+
+    public void SetDropdowns()
+    {
+        complexityDropdown.SetSpeed();
+        snakeColorDropdown.SetSnakeColor();
     }
 
 }

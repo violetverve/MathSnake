@@ -6538,8 +6538,9 @@ GameObject:
   - component: {fileID: 381680114}
   - component: {fileID: 381680116}
   - component: {fileID: 381680115}
+  - component: {fileID: 381680117}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: StatisticsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6607,6 +6608,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 381680113}
   m_CullTransparentMesh: 1
+--- !u!114 &381680117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381680113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7712c26adc64f54aa8cc89480856a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 122367695}
+  bestScoreText: {fileID: 1093634603}
 --- !u!1 &384470680
 GameObject:
   m_ObjectHideFlags: 0
@@ -15695,10 +15710,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snakeObject: {fileID: 1421372797}
   particleObject: {fileID: 1925451187}
+  UIManagerObject: {fileID: 1926823043}
   mathUnit: {fileID: 1113228815}
-  scoreText: {fileID: 122367695}
-  bestScoreText: {fileID: 1093634603}
-  bestScorePanel: {fileID: 1093634600}
+  bestScorePanel: {fileID: 1926823043}
   complexityDropdown: {fileID: 243239240}
   snakeColorDropdown: {fileID: 1083813128}
   animator: {fileID: 1675753340}
@@ -23516,6 +23530,7 @@ GameObject:
   - component: {fileID: 1682656316}
   - component: {fileID: 1682656315}
   - component: {fileID: 1682656314}
+  - component: {fileID: 1682656317}
   m_Layer: 5
   m_Name: SoundSwitch
   m_TagString: Untagged
@@ -23588,8 +23603,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1926823048}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+      - m_Target: {fileID: 1682656317}
+        m_TargetAssemblyTypeName: SoundSwitch, Assembly-CSharp
         m_MethodName: ChangeSoundSetting
         m_Mode: 1
         m_Arguments:
@@ -23650,6 +23665,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682656312}
   m_CullTransparentMesh: 1
+--- !u!114 &1682656317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682656312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807bc0ad10fa6974e9c580c3d944bc24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundButtonText: {fileID: 912810051}
 --- !u!1 &1702636504
 GameObject:
   m_ObjectHideFlags: 0
@@ -26141,7 +26169,6 @@ MonoBehaviour:
   _multiplicationToggle: {fileID: 1846663438}
   _divisionToggle: {fileID: 384470682}
   clickSound: {fileID: 1926823049}
-  soundButtonText: {fileID: 912810051}
   gameManager: {fileID: 1168230466}
 --- !u!82 &1926823049
 AudioSource:
