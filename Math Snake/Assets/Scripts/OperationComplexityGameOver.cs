@@ -25,7 +25,7 @@ public class OperationComplexityGameOver : MonoBehaviour
     {
         string plus = _additionToggle.isOn ? $"<color=#{_activeColorHex}>+</color>" : "+";
         string minus = _subtractionToggle.isOn ? $"<color=#{_activeColorHex}>-</color>" : "-";
-        complexityAddSubText.text = $"{plus} {minus} : {PlayerPrefs.GetInt("SliderAddSub", 10)}";
+        complexityAddSubText.text = $"{plus} {minus}  {PlayerPrefs.GetInt("SliderAddSub", 10)}";
     }
 
     private void SetMulDivComplexityText()
@@ -33,7 +33,7 @@ public class OperationComplexityGameOver : MonoBehaviour
         int complexityValue = PlayerPrefs.GetInt("SliderMulDiv", 10);
         string multiplication = $"<sprite name=\"MultiplicationSign\" {(_multiplicationToggle.isOn ? $"color=#{_activeColorHex}" : "")}>";
         string division = $"<sprite name=\"DivisionSign\" {(_divisionToggle.isOn ? $"color=#{_activeColorHex}" : "")}>";
-        string complexityText = $"{multiplication} {division} : {complexityValue}";
+        string complexityText = $"{multiplication} {division}  {complexityValue}";
         complexityMulDivText.text = complexityText;
     }
 
