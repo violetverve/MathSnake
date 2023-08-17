@@ -5,18 +5,12 @@ using TMPro;
 public class SoundSwitch : MonoBehaviour
 {
     public TextMeshProUGUI soundButtonText;
-    private bool _isSoundOn = true;
+    private bool _isSoundOn;
 
-
-    private void Awake()
-    {
-        _isSoundOn = PlayerPrefs.GetInt("Sound", 1) == 1;
-        SetSound(_isSoundOn);
-    }
 
     public void ChangeSoundSetting()
     {
-        _isSoundOn = !_isSoundOn;
+        _isSoundOn = PlayerPrefs.GetInt("Sound", 1) == 1 ? false : true;
         SetSound(_isSoundOn);
         PlayerPrefs.SetInt("Sound", _isSoundOn ? 1 : 0);
     }
