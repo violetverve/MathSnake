@@ -27954,4 +27954,4 @@ MonoBehaviour:
   _subtractionToggle: {fileID: 139847003}
   _multiplicationToggle: {fileID: 1846663438}
   _divisionToggle: {fileID: 384470682}
-  activeColor: {r: 0, g: 0.89411765, b: 0, a: 0}
+  activeColor: {r: 0, g: 0.76862746, b: 0, a: 1}
