@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
         if (mathUnit.CheckAnswer(food.GetValue()))
         {
             _snakeScript.Grow();
+            _particleManager.PlayScoreParticle(GetVector3From2(_snakeScript.GetGridPosition()));
         }
         else
         {
