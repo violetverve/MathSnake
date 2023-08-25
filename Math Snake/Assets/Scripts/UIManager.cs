@@ -131,4 +131,9 @@ public class UIManager : MonoBehaviour
     {
         _statisticsPanel.SetBestScoreText(bestScore);
     }
+
+    public void SetInitialBestScoreText(int bestScore)
+    {
+        _statisticsPanel.SetInitialBestScoreText(bestScore);
+    }
 }

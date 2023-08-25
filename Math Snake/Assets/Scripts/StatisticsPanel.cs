@@ -18,15 +18,22 @@ public class StatisticsPanel : MonoBehaviour
         if (scoreTextAnimationCoroutine != null)
             StopCoroutine(scoreTextAnimationCoroutine);
 
-        scoreTextAnimationCoroutine = StartCoroutine(AnimateFontSize(scoreText, score, true));
+        scoreTextAnimationCoroutine = StartCoroutine(AnimateFontSize(scoreText, score, true, "Apple"));
     }
 
-    public void SetBestScoreText(int bestScore)
+    public void SetBestScoreText(int bestScore, bool increaseSize = true)
+    {
+        // if (scoreTextAnimationCoroutine != null)
+        //     StopCoroutine(scoreTextAnimationCoroutine);
+        scoreTextAnimationCoroutine = StartCoroutine(AnimateFontSize(bestScoreText, bestScore, increaseSize, "Cup"));
+    }
+
+    public void SetInitialBestScoreText(int bestScore)
     {
         bestScoreText.text = $"<sprite name=\"Cup\"> {bestScore}";
     }
 
-    private IEnumerator AnimateFontSize(TextMeshProUGUI textComponent, int targetScore, bool increaseSize)
+    private IEnumerator AnimateFontSize(TextMeshProUGUI textComponent, int targetScore, bool increaseSize, string spriteName)
     {
         float initialFontSize = textComponent.fontSize;
         float targetFontSize = increaseSize ? initialFontSize + fontSizeIncreaseAmount : initialFontSize;
@@ -43,7 +50,7 @@ public class StatisticsPanel : MonoBehaviour
         textComponent.fontSize = targetFontSize;
 
         if (increaseSize)
-            scoreText.text = $"<sprite name=\"Apple\"> {targetScore}";
+            textComponent.text = $"<sprite name=\"{spriteName}\"> {targetScore}";
 
         while (elapsedTime < fontSizeAnimationDuration * 2)
         {

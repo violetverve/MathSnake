@@ -28,10 +28,19 @@ public class GameManager : MonoBehaviour
     private int _score;
     private bool _showTongue;
 
-    private bool _initialSetupDone = false;
+    private bool _initialSetupDone;
+    private int _initialBestScore;
+    private bool _recordBroken;
+    private string _bestScoreKey;
 
     private void Awake()
     {
+        _bestScoreKey = $"BestScore-{PlayerPrefs.GetInt("Speed")}-{PlayerPrefs.GetInt("Fruit")}";
+
+        _initialSetupDone = false;
+        _recordBroken = false;
+        _initialBestScore = PlayerPrefs.GetInt(_bestScoreKey, 0);
+
         StartCoroutine(InitializeGameCoroutine());
     }
 
@@ -67,11 +76,8 @@ public class GameManager : MonoBehaviour
     private void SaveScores()
     {
         PlayerPrefs.SetInt("Score", _score);
-        string best = $"BestScore-{PlayerPrefs.GetInt("Speed")}-{PlayerPrefs.GetInt("Fruit")}";
-        if (_score > PlayerPrefs.GetInt(best, 0))
-        {
-            PlayerPrefs.SetInt(best, _score);
-        }
+
+        if (_recordBroken) PlayerPrefs.SetInt(_bestScoreKey, _score);
     }
 
     private void ResetFood()
@@ -87,6 +93,7 @@ public class GameManager : MonoBehaviour
         {
             _snakeScript.Grow();
             _particleManager.PlayScoreParticle(GetVector3From2(_snakeScript.GetGridPosition()));
+            UpdateBestScore();
         }
         else
         {
@@ -111,13 +118,16 @@ public class GameManager : MonoBehaviour
 
     public void LoadBestScore()
     {
-        string best = $"BestScore-{PlayerPrefs.GetInt("Speed")}-{PlayerPrefs.GetInt("Fruit")}";
-
-        int bestScore = PlayerPrefs.GetInt(best, 0);
-        bool hasBestScore = bestScore > 0;
-
+        bool hasBestScore = _initialBestScore > 0;
         bestScorePanel.SetActive(hasBestScore);
-        _uiManager.SetBestScoreText(bestScore);
+        _uiManager.SetInitialBestScoreText(_initialBestScore);
+    }
+
+    private void UpdateBestScore()
+    {
+        if (!_recordBroken && _score > _initialBestScore) _recordBroken = true;
+
+        if (_recordBroken) _uiManager.SetBestScoreText(_score);
     }
 
     public void HandleTongueAnimation()
