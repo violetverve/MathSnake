@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     private Snake _snakeScript;
     private ParticleManager _particleManager;
     private UIManager _uiManager;
+    private FoodSpawn _foodSpawn;
+    private AudioManager _audioManager;
 
     private int _score;
     private bool _showTongue;
@@ -36,7 +38,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _bestScoreKey = $"BestScore-{PlayerPrefs.GetInt("Speed")}-{PlayerPrefs.GetInt("Fruit")}";
-
         _initialSetupDone = false;
         _recordBroken = false;
         _initialBestScore = PlayerPrefs.GetInt(_bestScoreKey, 0);
@@ -51,6 +52,8 @@ public class GameManager : MonoBehaviour
         _snakeScript = snakeObject.GetComponent<Snake>();
         _uiManager = UIManagerObject.GetComponent<UIManager>();
         _particleManager = particleObject.GetComponent<ParticleManager>();
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        _foodSpawn = GameObject.Find("FoodSpawn").GetComponent<FoodSpawn>();
 
         SetDropdowns();
         _score = -_snakeScript.GetInitialSize() + 1;
@@ -82,7 +85,7 @@ public class GameManager : MonoBehaviour
 
     private void ResetFood()
     {
-        GameObject.Find("FoodSpawn").GetComponent<FoodSpawn>().ChangeFoodPosition();
+        _foodSpawn.ChangeFoodPosition();
         mathUnit.ExecuteRandomOperation();
     }
 
@@ -92,13 +95,12 @@ public class GameManager : MonoBehaviour
         if (mathUnit.CheckAnswer(food.GetValue()))
         {
             _snakeScript.Grow();
-            _particleManager.PlayScoreParticle(GetVector3From2(_snakeScript.GetGridPosition()));
             UpdateBestScore();
         }
         else
         {
-            StartCoroutine(DeathCoroutine(() => _particleManager.PlayMathParticle(
-                GetVector3From2(_snakeScript.GetGridPosition()))));
+            StartCoroutine(DeathCoroutine(() => _particleManager.PlayParticle("math")));
+            _audioManager.PlaySound("stars");
         }
         ResetFood();
     }
@@ -106,8 +108,8 @@ public class GameManager : MonoBehaviour
     public void HandleSnakeCollision()
     {
         hitSound.Play();
-        StartCoroutine(DeathCoroutine(() => _particleManager.PlayHitParticle(
-            GetVector3From2(_snakeScript.GetGridPosition()))));
+        StartCoroutine(DeathCoroutine(() => _particleManager.PlayParticle("hit")));
+        _audioManager.PlaySound("stars");
     }
 
     public void IncreaseScore(int amount)
@@ -125,7 +127,17 @@ public class GameManager : MonoBehaviour
 
     private void UpdateBestScore()
     {
-        if (!_recordBroken && _score > _initialBestScore) _recordBroken = true;
+        if (!_recordBroken && _score > _initialBestScore)
+        {
+            _recordBroken = true;
+            _particleManager.PlayParticle("record");
+            _audioManager.PlaySound("record");
+        }
+        else
+        {
+            _particleManager.PlayParticle("score");
+            _audioManager.PlaySound("score");
+        }
 
         if (_recordBroken) _uiManager.SetBestScoreText(_score);
     }
@@ -135,7 +147,7 @@ public class GameManager : MonoBehaviour
         _showTongue = false;
 
         Vector3 headPosition = GetVector3From2(_snakeScript.GetGridPosition());
-        List<Vector3> foodPositions = GameObject.Find("FoodSpawn").GetComponent<FoodSpawn>().GetFoodPositions();
+        List<Vector3> foodPositions = _foodSpawn.GetFoodPositions();
 
         for (int i = 0; i < foodPositions.Count; i++)
         {

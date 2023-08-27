@@ -1,35 +1,33 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ParticleManager : MonoBehaviour
 {
-
     public GameObject mathParticle;
     public GameObject hitParticle;
     public GameObject scoreParticle;
+    public GameObject recordParticle;
 
-    private Particle _mathParticle;
-    private Particle _hitParticle;
-    private Particle _scoreParticle;
+    private Dictionary<string, Particle> _particles;
 
     private void Awake()
     {
-        _mathParticle = mathParticle.GetComponent<Particle>();
-        _hitParticle = hitParticle.GetComponent<Particle>();
-        _scoreParticle = scoreParticle.GetComponent<Particle>();
+        _particles = new Dictionary<string, Particle>();
+
+        AddParticle("math", mathParticle);
+        AddParticle("hit", hitParticle);
+        AddParticle("score", scoreParticle);
+        AddParticle("record", recordParticle);
     }
 
-    public void PlayHitParticle(Vector3 position)
+    private void AddParticle(string particleName, GameObject particleGameObject)
     {
-        _hitParticle.PlayParticle(position);
+        Particle particle = particleGameObject.GetComponent<Particle>();
+        _particles.Add(particleName, particle);
     }
 
-    public void PlayMathParticle(Vector3 position)
+    public void PlayParticle(string particleName)
     {
-        _mathParticle.PlayParticle(position - new Vector3(0.5f, 0.5f, 0));
-    }
-
-    public void PlayScoreParticle(Vector3 position)
-    {
-        _scoreParticle.PlayParticle(position);
+        _particles[particleName].PlayParticle();
     }
 }

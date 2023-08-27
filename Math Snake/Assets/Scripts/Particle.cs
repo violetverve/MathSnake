@@ -3,8 +3,8 @@ using UnityEngine;
 public class Particle : MonoBehaviour
 {
     public int speed;
-    public AudioSource sound;
     public Transform target;
+    public Vector3 offset;
 
     void Update()
     {
@@ -12,14 +12,13 @@ public class Particle : MonoBehaviour
 
         if (target != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target.position - offset, speed * Time.deltaTime);
         }
     }
 
-    public void PlayParticle(Vector3 position)
+    public void PlayParticle()
     {
-        sound.Play();
-        transform.position = position;
+        transform.position = target.position - offset;
         GetComponent<ParticleSystem>().Play();
     }
 
