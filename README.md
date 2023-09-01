@@ -20,3 +20,8 @@ Arrow Keys to control the direction of the snake.
 - **Difficulty Levels:** Choose different difficulty levels to match your math abilities.
 - **High Scores:** Compete with yourself and your friends to achieve the highest score.
 - **Sound Effects:** Enjoy immersive sound effects that enhance the gaming experience.
+
+## Software Used
+- **Game Engine:** Unity
+- **Sounds:** Audacity, bfxr
+- **Graphics:** Aseprite
