@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     public GameObject snakeObject;
     public GameObject particleObject;
     public GameObject UIManagerObject;
-
     public MathUnit mathUnit;
 
     public GameObject bestScorePanel;
@@ -177,7 +176,8 @@ public class GameManager : MonoBehaviour
         particleAction.Invoke();
         yield return new WaitForSeconds(2.5f);
         SaveScores();
-        _snakeScript.Die();
+
+        _uiManager.EnableGameOverMenu();
     }
 
     public Vector3 GetVector3From2(Vector2 gridPosition)

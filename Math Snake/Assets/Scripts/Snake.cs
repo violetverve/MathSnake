@@ -19,16 +19,14 @@ public class Snake : MonoBehaviour
     private List<SnakeMovePosition> snakeMovePositionList;
     private List<SnakeBodyPart> snakeBodyPartList;
     private bool _isAlive;
-
     private bool _startedMoving;
+    private Animator _animator;
 
     public Rigidbody2D rb;
     public Transform segmentPrefab;
     public int initialSize;
     public List<AudioSource> snakeMoveSounds;
 
-
-    public static event Action OnPlayerDeath;
 
     private void Awake()
     {
@@ -37,19 +35,9 @@ public class Snake : MonoBehaviour
         snakeMovePositionList = new List<SnakeMovePosition>();
         snakeBodyPartList = new List<SnakeBodyPart>();
         _isAlive = true;
+        _animator = GetComponent<Animator>();
 
         ResetState();
-    }
-
-
-    private void OnEnable()
-    {
-        OnPlayerDeath += DisableMovement;
-    }
-
-    private void OnDisable()
-    {
-        OnPlayerDeath -= EnableMovement;
     }
 
     private void Update()
@@ -232,16 +220,7 @@ public class Snake : MonoBehaviour
     public void DisableMovement()
     {
         _isAlive = false;
-    }
-
-    public void EnableMovement()
-    {
-        _isAlive = true;
-    }
-
-    public void Die()
-    {
-        OnPlayerDeath?.Invoke();
+        _animator.SetBool("isAlive", false);
     }
 
     public int GetInitialSize()
@@ -261,7 +240,6 @@ public class Snake : MonoBehaviour
 
     private class SnakeBodyPart
     {
-
         private SnakeMovePosition snakeMovePosition;
         private Transform transform;
 

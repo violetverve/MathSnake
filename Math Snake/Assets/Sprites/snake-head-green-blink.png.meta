@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e87a7a60015d659478921226b3e2aafe
+guid: 2ff9747992bd52641a0bad2148de4a42
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tongueHides-Sheet_0
+      name: snake-head-green-blink_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b5168fb5803f4d49a6c7fe06f0b8fbb
-      internalID: -306124271
+      spriteID: bfc53bee9053ad04a9e7e8756cbaef5f
+      internalID: 157415186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tongueHides-Sheet_1
+      name: snake-head-green-blink_1
       rect:
         serializedVersion: 2
         x: 16
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 093f4bfc3bddd5d44a79a8cf36872fff
-      internalID: -1423274844
+      spriteID: d79de572def75894883c86f1181b1009
+      internalID: 307819453
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tongueHides-Sheet_2
+      name: snake-head-green-blink_2
       rect:
         serializedVersion: 2
         x: 32
@@ -179,50 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7477a853423d154a9073c66f164514b
-      internalID: -1267465545
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tongueHides-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 612382ab3e538b24387b989fe2f84f2f
-      internalID: -2091906244
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tongueHides-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d0c7905ca1a4d624e868b8ddd987a209
-      internalID: -1499234088
+      spriteID: 51383b0074bfa7147874638b31a8796e
+      internalID: 1557549078
       vertices: []
       indices: 
       edges: []
@@ -238,11 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tongueHides-Sheet_0: -306124271
-      tongueHides-Sheet_1: -1423274844
-      tongueHides-Sheet_2: -1267465545
-      tongueHides-Sheet_3: -2091906244
-      tongueHides-Sheet_4: -1499234088
+      snake-head-green-blink_0: 157415186
+      snake-head-green-blink_1: 307819453
+      snake-head-green-blink_2: 1557549078
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -7,6 +7,7 @@ public class SnakeColorDropdown : MonoBehaviour
     public TMPro.TMP_Dropdown dropdown;
     public GameObject snake;
     public GameObject snakeSegmentPrefab;
+    public Animator snakeAnimator;
 
     public Sprite snakeHeadGreen;
     public Sprite snakeHeadYellow;
@@ -32,6 +33,8 @@ public class SnakeColorDropdown : MonoBehaviour
     {
         LoadSnakeColor();
 
+        SetSnakeColorAnimator();
+
         switch (dropdown.value)
         {
             case 0:
@@ -51,9 +54,14 @@ public class SnakeColorDropdown : MonoBehaviour
         snake.GetComponent<SpriteRenderer>().sprite = headSprite;
         snakeSegmentPrefab.GetComponent<SpriteRenderer>().sprite = bodySprite;
     }
+
     public string GetSelectedValue()
     {
         return dropdown.options[dropdown.value].text;
     }
 
+    public void SetSnakeColorAnimator()
+    {
+        snakeAnimator.SetInteger("snakeColor", dropdown.value);
+    }
 }

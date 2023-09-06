@@ -58,16 +58,6 @@ public class UIManager : MonoBehaviour
         };
     }
 
-    private void OnEnable()
-    {
-        Snake.OnPlayerDeath += EnableGameOverMenu;
-    }
-
-    private void OnDisable()
-    {
-        Snake.OnPlayerDeath -= EnableGameOverMenu;
-    }
-
     public void EnableGameOverMenu()
     {
         settingsPanel.SetActive(false);
@@ -136,4 +126,5 @@ public class UIManager : MonoBehaviour
     {
         _statisticsPanel.SetInitialBestScoreText(bestScore);
     }
+
 }
