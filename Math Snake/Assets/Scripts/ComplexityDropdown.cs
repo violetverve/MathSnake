@@ -36,7 +36,7 @@ public class ComplexityDropdown : MonoBehaviour
                 Time.fixedDeltaTime = 0.1f;
                 break;
             case 2:
-                Time.fixedDeltaTime = 0.05f;
+                Time.fixedDeltaTime = 0.075f;
                 break;
         }
     }
