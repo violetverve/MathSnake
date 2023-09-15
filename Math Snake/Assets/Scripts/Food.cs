@@ -3,13 +3,10 @@ using TMPro;
 
 public class Food : MonoBehaviour
 {
-    public int timeToGrow;
+    [SerializeField] int timeToGrow;
     private Snake _snakeScript;
-
     private int _timeCounter;
-
     private float _growthAmount;
-
     private bool _isGrowing;
 
     private void Awake()
