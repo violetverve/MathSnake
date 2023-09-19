@@ -1,8 +1,18 @@
 # MathSnake
+
+<p align="center">
+  <img src="https://github.com/violetverve/MathSnake/assets/92580927/8eb23325-0df1-4457-820d-d526c2205bd0" width="100" alt="Your Image Description">
+</p>
+
+
 Welcome to MathSnake, an exciting and educational twist on the classic Snake game. Improve your math skills while having fun! This README will guide you through setting up and understanding the game.
 
 ## How to Play
 MathSnake combines the classic Snake game with math problems. The objective is to eat the apples (represented as numbers) to make your snake grow, but here's the twist: before eating an apple, you must solve the math problem associated with it.
+
+<p align="center">
+<img src="https://github.com/violetverve/MathSnake/assets/92580927/bd03cc1d-e004-476c-89f9-7ff7536c653a" width="850" alt="Image Description">
+</p>
 
 ### Controls
 Arrow Keys to control the direction of the snake.
