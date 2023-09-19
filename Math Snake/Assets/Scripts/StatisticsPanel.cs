@@ -15,22 +15,17 @@ public class StatisticsPanel : MonoBehaviour
 
     public void SetScoreText(int score)
     {
-        if (scoreTextAnimationCoroutine != null)
-            StopCoroutine(scoreTextAnimationCoroutine);
-
         scoreTextAnimationCoroutine = StartCoroutine(AnimateFontSize(scoreText, score, true, "Apple"));
     }
 
     public void SetBestScoreText(int bestScore, bool increaseSize = true)
     {
-        // if (scoreTextAnimationCoroutine != null)
-        //     StopCoroutine(scoreTextAnimationCoroutine);
         scoreTextAnimationCoroutine = StartCoroutine(AnimateFontSize(bestScoreText, bestScore, increaseSize, "Cup"));
     }
 
     public void SetInitialBestScoreText(int bestScore)
     {
-        bestScoreText.text = $"<sprite name=\"Cup\"> {bestScore}";
+        bestScoreText.text = bestScore == 0 ? "" : $"<sprite name=\"Cup\"> {bestScore}";
     }
 
     private IEnumerator AnimateFontSize(TextMeshProUGUI textComponent, int targetScore, bool increaseSize, string spriteName)

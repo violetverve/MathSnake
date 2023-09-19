@@ -119,8 +119,6 @@ public class GameManager : MonoBehaviour
 
     public void LoadBestScore()
     {
-        bool hasBestScore = _initialBestScore > 0;
-        bestScorePanel.SetActive(hasBestScore);
         _uiManager.SetInitialBestScoreText(_initialBestScore);
     }
 
