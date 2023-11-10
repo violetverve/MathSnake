@@ -1,16 +1,16 @@
 # MathSnake
 
 <p align="center">
-  <img src="https://github.com/violetverve/MathSnake/assets/92580927/8eb23325-0df1-4457-820d-d526c2205bd0" width="100" alt="Game Logo">
+  <img src="https://github.com/violetverve/MathSnake/assets/92580927/f5646aba-da5b-409a-9852-ab0380648825" width="100" alt="Game Logo">
 </p>
-
 
 Welcome to MathSnake, an exciting and educational twist on the classic Snake game. Improve your math skills while having fun! This README will guide you through setting up and understanding the game.
 
 ## How to Play
 MathSnake combines the classic Snake game with math problems. The objective is to eat the apples (represented as numbers) to make your snake grow, but here's the twist: before eating an apple, you must solve the math problem associated with it.
 
-![image](https://github.com/violetverve/MathSnake/assets/92580927/7b710395-fd17-4569-a507-104936a3723b)
+![image](https://github.com/violetverve/MathSnake/assets/92580927/9b8e098b-04c9-4cff-b05f-4bfb8a5647ce)
+
 
 ### Controls
 Arrow Keys to control the direction of the snake.
@@ -26,23 +26,23 @@ Arrow Keys to control the direction of the snake.
 ## Menu
 The Game Menu shows the game's complexity: the range of numbers per action of multiplication/division and addition/subtraction, as well as which are active. It also presents the results of a previous game: its score and best score. The panel below them shows the current configuration of color, speed, and amount of apples-answers spawned per math problem.
 
-![image](https://github.com/violetverve/MathSnake/assets/92580927/03617243-52e8-4384-9492-a44be49a25bb)
+![image](https://github.com/violetverve/MathSnake/assets/92580927/127d515e-e482-4b0c-b04a-eac8c1734b6f)
 
 ## Settings
 The Settings panel allows you to customize the game and its complexity!
 
-![image](https://github.com/violetverve/MathSnake/assets/92580927/a6fa46dd-e834-40c6-ad96-4f8501ef9b1e)
+![image](https://github.com/violetverve/MathSnake/assets/92580927/f32393fa-610b-4aea-9477-bc10d7e7b100)
 
 The dropdowns allow you to change the snake's color, speed, and the number of apples.
 
-
 <p align="center">
-<img src="https://github.com/violetverve/MathSnake/assets/92580927/78053035-ddb5-4ffc-a8d8-43557034ce9d" width="500" alt="Settings Dropdowns">
+<img src="https://github.com/violetverve/MathSnake/assets/92580927/4ce4f62e-2920-4774-8905-4c4043ff49ac" width="500" alt="Settings Dropdowns">
 </p>
 
 The other part of the settings screen allows one to pick the actions and the range of the numbers used for the problems.
+
 <p align="center">
-<img src="https://github.com/violetverve/MathSnake/assets/92580927/13b3f29b-4b82-4b34-bf4f-9559dda2ed0a" width="500" alt="Settings Dropdowns">
+<img src="https://github.com/violetverve/MathSnake/assets/92580927/ce76f2fd-d279-4a0a-a0e5-9fa003d37515" width="500" alt="Settings Dropdowns">
 </p>
 
 ## Game Features
