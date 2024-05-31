@@ -1,8 +1,9 @@
 # MathSnake
-
 <p align="center">
   <img src="https://github.com/violetverve/MathSnake/assets/92580927/f5646aba-da5b-409a-9852-ab0380648825" width="100" alt="Game Logo">
 </p>
+
+### [Gameplay Video](https://drive.google.com/file/d/1dlTyXcAaAX2ym30rxThN337Rd-DAr2ef/view?usp=sharing)
 
 Welcome to MathSnake, an exciting and educational twist on the classic Snake game. Improve your math skills while having fun! This README will guide you through setting up and understanding the game.
 
